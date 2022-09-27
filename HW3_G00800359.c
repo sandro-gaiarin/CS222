@@ -17,14 +17,31 @@ void decimalToOct(int decValue, char octString[]);
 int main() {
     int userNum = 0;
     char userName[36]; // i really have no clue what to initialize these to
+    char binString[]; //TODO check array size
+    char hexString[]; //TODO check array size
+    char octString[]; //TODO check array size
     printf("Enter your name: ");
     fgets(userName, sizeof(userName, stdin)); //get user's name
 
     userNum = getInteger();
     while (userNum != -1) { //exit case
-        
-    }
+        // print out numbers and their converted versions:
+        printf(\n);
+        printf("Decimal: %d", userNum); //TODO check syntax
+        decimalToHex(userNum, hexString);
+        printf("Hexadecimal: %s", hexString);
+        decimalToOct(userNum, octString);
+        printf("Octal: %s", octString);
+        decimalToBinary(userNum, binString);
+        printf("BInary: %s", binString);
 
+        // prompt user for saving a file:
+        saveUserFile();
+
+        // Set up loop to start again:
+        userNum = getInteger();
+    }
+    return 0;
 }
 
 char *getDateAndTime() {
@@ -52,67 +69,13 @@ int getInteger() {
 
 void decimalToBinary(int decValue, char binString[]) {
     int quotient = 0;
-
 }
 
 void decimalToHex(int decValue, char hexString[]) {
-
 }
 
 void decimalToOct(int decValue, char octString[]) {
-
 }
 
 void saveUserFile() {
-
 }
-
-/*
-
-int main() {
-    userNum = 0;
-    userName = printf("Enter your name: ");
-
-    userNum = printf("Enter an Integer [1 - 1000000] or type x to exit: ");
-    while (userNum != "x") {
-        while (!(1 < userNum < 1000000)) {
-            if (userNum < 1 || userNum > 1000000) {
-                printf("Error: " + userNum + " is out of range");
-            }
-            else if (userNum == "x") {
-                exit()
-            }
-        }
-
-        printf(\n);
-        printf("Decimal: " + userNum);
-        printf("Hexadecimal: " + decimalToHex(userNum));
-        printf("Octal: " + decimalToOct(userNum));
-        printf("Binary: " + decimalToBinary(userNum));
-
-        //prompt for file - THIS SHOULD BE ITS OWN METHOD
-        saveFile();
-
-        //Set loop up to be restarted:
-        userNum = printf("Enter an Integer [1 - 1000000] or type x to exit: ");
-    }
-    return 0;
-}
-
-void saveFile() {
-    userFile = printf("Save to a file? (y/n): ");
-    if (userFile == "n") {
-        continue;
-    }
-    else if (userFile == "y") {
-        fileName = printf("Enter file name: ");
-        createFile(fileName) //this is a fake method
-        printf("File saved.");
-    }
-    else {
-        printf("Error: illegal value");
-        saveFile();
-    }
-}
-
-*/
