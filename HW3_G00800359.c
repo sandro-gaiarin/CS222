@@ -28,13 +28,14 @@ int main() {
     while (userNum != -1) { //exit case
         // print out numbers and their converted versions:
         printf("\n");
-        printf("Decimal: %d", userNum); //TODO check syntax
+        printf("Decimal: %d\n", userNum); //TODO check syntax
         decimalToHex(userNum, hexString);
-        printf("Hexadecimal: %s", hexString);
+        printf("Hexadecimal: %s\n", hexString);
         decimalToOct(userNum, octString);
-        printf("Octal: %s", octString);
+        printf("Octal: %s\n", octString);
         decimalToBinary(userNum, binString);
-        printf("BInary: %s", binString);
+        printf("Binary: %s\n", binString);
+        printf("\n");
 
         // prompt user for saving a file:
         saveUserFile();
@@ -62,7 +63,7 @@ int getInteger() {
         return convertedInt;
      }
      else {
-        printf("Error: %d is out of range", convertedInt);
+        printf("Error: %d is out of range\n", convertedInt);
         return getInteger(); //recursion!
      }
 
