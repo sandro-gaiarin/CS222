@@ -43,6 +43,8 @@ int main() {
         // Set up loop to start again:
         userNum = getInteger();
     }
+    printf("\n");
+    printf("Goodbye!\n");
     return 0;
 }
 
