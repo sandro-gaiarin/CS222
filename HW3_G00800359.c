@@ -13,20 +13,21 @@ void decimalToHex(int decValue, char hexString[]);
 // Store resulting hexadecimal value as char string within hexString
 void decimalToOct(int decValue, char octString[]);
 // Store resulting octal value as char string within octString.
+void saveUserFile(); //TODO add doc comment
 
 int main() {
     int userNum = 0;
     char userName[36]; // i really have no clue what to initialize these to
-    char binString[]; //TODO check array size
-    char hexString[]; //TODO check array size
-    char octString[]; //TODO check array size
+    char binString[36]; //TODO check array size
+    char hexString[36]; //TODO check array size
+    char octString[36]; //TODO check array size
     printf("Enter your name: ");
-    fgets(userName, sizeof(userName, stdin)); //get user's name
+    fgets(userName, sizeof(userName), stdin); //get user's name
 
     userNum = getInteger();
     while (userNum != -1) { //exit case
         // print out numbers and their converted versions:
-        printf(\n);
+        printf("\n");
         printf("Decimal: %d", userNum); //TODO check syntax
         decimalToHex(userNum, hexString);
         printf("Hexadecimal: %s", hexString);
