@@ -57,7 +57,7 @@ int main() {
             fprintf(userFile, "Binary: %s\n", binString);
 
 
-            printf("File saved.");
+            printf("File saved.\n");
             fclose(userFile);
                 // save the file
         }
