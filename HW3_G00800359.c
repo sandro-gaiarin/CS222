@@ -14,7 +14,7 @@ void decimalToHex(int decValue, char hexString[]);
 // Store resulting hexadecimal value as char string within hexString
 void decimalToOct(int decValue, char octString[]);
 // Store resulting octal value as char string within octString.
-void saveUserFile(); //TODO add doc comment
+int saveUserFile(); //TODO add doc comment
 
 int main() {
     int userNum = 0;
@@ -48,16 +48,16 @@ int main() {
             fgets(fileName, 32, stdin);
             userFile = fopen(fileName, "w");
             //writing to file:
-            fputs("%s\n", userName, userFile);
-            fputs("Today's date: %s\n", getDateAndTime(), userFile);
-            fputs("\n", userFile);
-            fputs("Decimal: %d\n", userNum, userFile);
-            fputs("Hexadecimal: %s\n", hexString, userFile);
-            fputs("Octal: %s\n", octString, userFile);
-            fputs("Binary: %s\n", binString, userFile);
+            fprintf(userFile, "%s\n", userName);
+            fprintf(userFile, "Today's date: %s\n", getDateAndTime());
+            fprintf(userFile, "\n");
+            fprintf(userFile, "Decimal: %d\n", userNum);
+            fprintf(userFile, "Hexadecimal: %s\n", hexString);
+            fprintf(userFile, "Octal: %s\n", octString);
+            fprintf(userFile, "Binary: %s\n", binString);
 
 
-            printf("File saved.")
+            printf("File saved.");
             fclose(userFile);
                 // save the file
         }
@@ -106,11 +106,11 @@ void decimalToOct(int decValue, char octString[]) {
 }
 
 int saveUserFile() {
-    char saveChar;
+    char saveChar[8];
     printf("Save to a file? (y/n): ");
-    fgets(saveChar, 1, stdin);
-    if (saveChar == 'y') {
-        return 1
+    fgets(saveChar, 8, stdin);
+    if (saveChar[0] == 'y') {
+        return 1;
     }
     else if (saveChar == 'n') {
         return 0;
