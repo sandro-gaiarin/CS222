@@ -100,10 +100,10 @@ void decimalToBinary(int decValue, char binString[]) {
     int quotient = decValue;
     int i = 1;
     while (quotient != 0) {
-        binString[i++] = quotient % 2;
+        binString[i++] = itoa(quotient % 2, binString);
         quotient = quotient / 2;
     }
-    printf("binary string: %s", binString[]);
+    printf("binary string method test: %s\n", binString);
 }
 
 void decimalToHex(int decValue, char hexString[]) {
