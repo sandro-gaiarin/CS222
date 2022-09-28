@@ -46,9 +46,9 @@ int main() {
         if (saveBool == 1) {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
-            printf("File name: %s", fileName); //TODO DELETE
-            //userFile = fopen(fileName, "w"); TODO commented out for testing
-            userFile = fopen("codetest.txt", "w");
+            //printf("File name: %s", fileName); //TODO DELETE
+            userFile = fopen(fileName, "w"); TODO commented out for testing
+            //userFile = fopen("codetest.txt", "w");
             //writing to file:
             fprintf(userFile, "%s", userName);
             fprintf(userFile, "Today's date: %s\n", getDateAndTime());
