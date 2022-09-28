@@ -46,7 +46,8 @@ int main() {
         if (saveBool == 1) {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
-            userFile = fopen(fileName, "w");
+            //userFile = fopen(fileName, "w"); TODO commented out for testing
+            userFile = fopen("codetest.txt", "w");
             //writing to file:
             fprintf(userFile, "%s\n", userName);
             fprintf(userFile, "Today's date: %s\n", getDateAndTime());
@@ -116,7 +117,7 @@ int saveUserFile() {
         return 0;
     }
     else {
-        printf("Error: Illegal value");
+        printf("Error: Illegal value\n");
         return saveUserFile(); //recursion again
     }
 }
