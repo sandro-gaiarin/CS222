@@ -103,7 +103,7 @@ void decimalToBinary(int decValue, char binString[]) {
         binString[i++] = quotient % 2;
         quotient = quotient / 2;
     }
-    printf("binary string: %s", binString);
+    printf("binary string: %s", binString[]);
 }
 
 void decimalToHex(int decValue, char hexString[]) {
