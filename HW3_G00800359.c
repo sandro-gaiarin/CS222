@@ -98,11 +98,12 @@ int getInteger() {
 
 void decimalToBinary(int decValue, char binString[]) {
     int quotient = decValue;
-    int i = 0;
+    int i = 1;
     while (quotient != 0) {
         binString[i++] = quotient % 2;
         quotient = quotient / 2;
     }
+    printf("binary string: %s", binString);
 }
 
 void decimalToHex(int decValue, char hexString[]) {
