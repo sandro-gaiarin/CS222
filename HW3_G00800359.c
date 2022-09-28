@@ -112,7 +112,7 @@ int saveUserFile() {
     if (saveChar[0] == 'y') {
         return 1;
     }
-    else if (saveChar == 'n') {
+    else if (saveChar[0] == 'n') {
         return 0;
     }
     else {
