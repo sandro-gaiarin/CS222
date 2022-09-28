@@ -47,7 +47,7 @@ int main() {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
             //printf("File name: %s", fileName); //TODO DELETE
-            userFile = fopen(fileName, "w"); //TODO commented out for testing
+            userFile = fopen(fileName, "w");
             //userFile = fopen("codetest.txt", "w");
             //writing to file:
             fprintf(userFile, "%s", userName);
@@ -97,7 +97,12 @@ int getInteger() {
 }
 
 void decimalToBinary(int decValue, char binString[]) {
-    int quotient = 0;
+    int quotient = decValue;
+    int i = 1;
+    while (quotient != 0) {
+        binString[i++] = quotient % 2;
+        quotient = quotient / 2;
+    }
 }
 
 void decimalToHex(int decValue, char hexString[]) {
