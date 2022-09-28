@@ -46,7 +46,7 @@ int main() {
         if (saveBool == 1) {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
-            //printf("File name: %s", fileName); //TODO DELETE
+            printf("File name: %s", fileName); //TODO DELETE
             userFile = fopen(fileName, "w");
             //userFile = fopen("codetest.txt", "w");
             //writing to file:
@@ -108,7 +108,6 @@ void decimalToBinary(int decValue, char binString[]) {
         binString[i++] = c;
         quotient = quotient / 2;
     }
-    printf("binary string method test: %s\n", binString);
 }
 
 void decimalToHex(int decValue, char hexString[]) {
