@@ -60,7 +60,7 @@ int main() {
 
             printf("File saved.\n");
             fclose(userFile);
-                // save the file
+            // save the file
         }
 
         // Set up loop to start again:
@@ -98,9 +98,9 @@ int getInteger() {
 
 void decimalToBinary(int decValue, char binString[]) {
     int quotient = decValue;
-    int i = 1;
+    int i = 0;
     while (quotient != 0) {
-        *binString[i++] = quotient % 2;
+        binString[i++] = quotient % 2;
         quotient = quotient / 2;
     }
     printf("binary string method test: %s\n", binString);
