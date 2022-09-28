@@ -99,8 +99,13 @@ int getInteger() {
 void decimalToBinary(int decValue, char binString[]) {
     int quotient = decValue;
     int i = 0;
+    char c;
+    int a;
     while (quotient != 0) {
-        binString[i++] = quotient % 2;
+        //binString[i++] = quotient % 2;
+        a = quotient % 2;
+        c = a + '0';
+        binString[i++] = c;
         quotient = quotient / 2;
     }
     printf("binary string method test: %s\n", binString);
