@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 char *getDateAndTime(); 
 // returns char string with current date and time
 int getInteger(); 
@@ -17,10 +18,13 @@ void saveUserFile(); //TODO add doc comment
 
 int main() {
     int userNum = 0;
-    char userName[36]; // i really have no clue what to initialize these to
-    char binString[36]; //TODO check array size
-    char hexString[36]; //TODO check array size
-    char octString[36]; //TODO check array size
+    int saveBool = 0;
+    char fileName[32];
+    FILE *userFile;
+    char userName[32]; // i really have no clue what to initialize these to
+    char binString[32]; //TODO check array size
+    char hexString[32]; //TODO check array size
+    char octString[32]; //TODO check array size
     printf("Enter your name: ");
     fgets(userName, sizeof(userName), stdin); //get user's name
 
@@ -38,7 +42,25 @@ int main() {
         printf("\n");
 
         // prompt user for saving a file:
-        saveUserFile();
+        saveBool = saveUserFile();
+        if (saveBool == 1) {
+            printf("Enter file name: ");
+            fgets(fileName, 32, stdin);
+            userFile = fopen(fileName, "w");
+            //writing to file:
+            fputs("%s\n", userName, userFile);
+            fputs("Today's date: %s\n", getDateAndTime(), userFile);
+            fputs("\n", userFile);
+            fputs("Decimal: %d\n", userNum, userFile);
+            fputs("Hexadecimal: %s\n", hexString, userFile);
+            fputs("Octal: %s\n", octString, userFile);
+            fputs("Binary: %s\n", binString, userFile);
+
+
+            printf("File saved.")
+            fclose(userFile);
+                // save the file
+        }
 
         // Set up loop to start again:
         userNum = getInteger();
@@ -48,15 +70,17 @@ int main() {
     return 0;
 }
 
-char *getDateAndTime() {
-    return 0;
+char *getDateAndTime() { //used week 5 notes
+    time_t t;
+    time(&t);
+    return ctime(&t);
 }
 
 int getInteger() {
-    char buffer[256]; //set buffer to 7, since there can only be a max of 7 ints?
+    char buffer[32];
     int convertedInt = 0;
     printf("Enter an Integer [1 - 1000000] or type x to exit: ");
-    fgets(buffer, 256, stdin); //wonder if this works
+    fgets(buffer, 32, stdin); //wonder if this works
     if (buffer[0] == 'x') {
         return -1;
     }
@@ -81,5 +105,18 @@ void decimalToHex(int decValue, char hexString[]) {
 void decimalToOct(int decValue, char octString[]) {
 }
 
-void saveUserFile() {
+int saveUserFile() {
+    char saveChar;
+    printf("Save to a file? (y/n): ");
+    fgets(saveChar, 1, stdin);
+    if (saveChar == 'y') {
+        return 1
+    }
+    else if (saveChar == 'n') {
+        return 0;
+    }
+    else {
+        printf("Error: Illegal value");
+        return saveUserFile(); //recursion again
+    }
 }
