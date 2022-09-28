@@ -46,12 +46,12 @@ int main() {
         if (saveBool == 1) {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
+            printf("File name: %s", fileName); //TODO DELETE
             //userFile = fopen(fileName, "w"); TODO commented out for testing
             userFile = fopen("codetest.txt", "w");
             //writing to file:
-            fprintf(userFile, "%s\n", userName);
+            fprintf(userFile, "%s", userName);
             fprintf(userFile, "Today's date: %s\n", getDateAndTime());
-            fprintf(userFile, "\n");
             fprintf(userFile, "Decimal: %d\n", userNum);
             fprintf(userFile, "Hexadecimal: %s\n", hexString);
             fprintf(userFile, "Octal: %s\n", octString);
