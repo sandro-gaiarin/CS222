@@ -100,7 +100,7 @@ void decimalToBinary(int decValue, char binString[]) {
     int quotient = decValue;
     int i = 1;
     while (quotient != 0) {
-        binString[i++] = itoa(quotient % 2, binString);
+        itoa(quotient % 2, binString[i++]);
         quotient = quotient / 2;
     }
     printf("binary string method test: %s\n", binString);
