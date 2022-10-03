@@ -14,7 +14,8 @@ void decimalToHex(int decValue, char hexString[]);
 // Store resulting hexadecimal value as char string within hexString
 void decimalToOct(int decValue, char octString[]);
 // Store resulting octal value as char string within octString.
-int saveUserFile(); //TODO add doc comment
+int saveUserFile(); 
+// Asks user if they'd like to save a file
 
 int main() {
     int userNum = 0;
@@ -97,17 +98,24 @@ int getInteger() {
 
 void decimalToBinary(int decValue, char binString[]) {
     binString[0] = '\0'; // null character, cleans out char array
+    char tempString[32]; //temporary character array
     int quotient = decValue;
     int i = 0;
     char charValue;
     int intValue;
     while (quotient != 0) {
-        //binString[i++] = quotient % 2;
         intValue = quotient % 2;
-        charValue = intValue + '0'; // converts int to char, kind of
-        binString[i++] = charValue;
+        charValue = intValue + '0'; // moves up to '0' char
+        tempString[i++] = charValue;
         quotient = quotient / 2;
     }
+    tempString[i] = '\0'; // end temp char array
+
+    int j = 0;
+    for (int k = i - 1; k >= 0; k--) {
+        binString[j++] = tempString[k];
+    }
+    binString[j] = '\0'; // end char array
 }
 
 void decimalToHex(int decValue, char hexString[]) {
@@ -124,7 +132,7 @@ void decimalToHex(int decValue, char hexString[]) {
             //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
         else {
-            charValue = intValue + 55; //10-16 characters
+            charValue = intValue + 55; //10-16 characters (starts at '7')
             //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
         tempString[i++] = charValue; // add character to temp string
@@ -149,14 +157,7 @@ void decimalToOct(int decValue, char octString[]) {
     int intValue;
     while (quotient != 0) {
         intValue = quotient % 8;
-        if (intValue < 10) {
-            charValue = intValue + 48; //1-9 characters
-            //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
-        }
-        else {
-            charValue = intValue + 55; //10-16 characters
-            //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
-        }
+        charValue = intValue + '0';
         tempString[i++] = charValue; // add character to temp string
         quotient = quotient / 8; // divide by 16 to prep for next loop
     }
@@ -167,8 +168,6 @@ void decimalToOct(int decValue, char octString[]) {
         octString[j++] = tempString[k];
     }
     octString[j] = '\0'; // end char array
-
-
 }
 
 int saveUserFile() {
