@@ -47,9 +47,7 @@ int main() {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
             fileName[strcspn(fileName, "\n")] = 0; //This removes the newline character at the end of the fgets of fileName
-            //printf("File name: %s", fileName); //TODO DELETE
             userFile = fopen(fileName, "w");
-            //userFile = fopen("codetest.txt", "w");
             //writing to file:
             fprintf(userFile, "%s", userName);
             fprintf(userFile, "Today's date: %s\n", getDateAndTime());
@@ -122,15 +120,15 @@ void decimalToHex(int decValue, char hexString[]) {
     while (quotient != 0) {
         intValue = quotient % 16;
         if (intValue < 10) {
-            charValue = intValue + 48;
-            printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
+            charValue = intValue + 48; //1-9 characters
+            //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
         else {
-            charValue = intValue + 55;
-            printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
+            charValue = intValue + 55; //10-16 characters
+            //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
-        tempString[i++] = charValue;
-        quotient = quotient / 16;
+        tempString[i++] = charValue; // add character to temp string
+        quotient = quotient / 16; // divide by 16 to prep for next loop
     }
     tempString[i] = '\0'; // end the char array
 
