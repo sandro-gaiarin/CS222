@@ -125,7 +125,7 @@ void decimalToHex(int decValue, char hexString[]) {
             printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
         else {
-            charValue = intValue + 65;
+            charValue = intValue + 55;
             printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
         hexString[i++] = charValue;
