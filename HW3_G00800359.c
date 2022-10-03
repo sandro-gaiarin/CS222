@@ -114,6 +114,7 @@ void decimalToBinary(int decValue, char binString[]) {
 
 void decimalToHex(int decValue, char hexString[]) {
     hexString[0] = '\0'; // null character, cleans out char array
+    char tempString[32]; //temporary character array
     int quotient = decValue;
     int i = 0;
     char charValue;
@@ -128,9 +129,16 @@ void decimalToHex(int decValue, char hexString[]) {
             charValue = intValue + 55;
             printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
-        hexString[i++] = charValue;
+        tempString[i++] = charValue;
         quotient = quotient / 16;
     }
+    tempString[i] = '\0'; // end the char array
+
+    int j = 0;
+    for (int k = i - 1; k >= 0; k--) { // need to reverse the order of the array
+        hexString[j++] = tempString[k];
+    }
+    hexString[j] = '\0'; // end char array
 }
 
 void decimalToOct(int decValue, char octString[]) {
