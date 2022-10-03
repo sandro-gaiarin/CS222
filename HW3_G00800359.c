@@ -140,6 +140,35 @@ void decimalToHex(int decValue, char hexString[]) {
 }
 
 void decimalToOct(int decValue, char octString[]) {
+    // I think this can work by using the same algo/code I made for decimalToHex()
+    octString[0] = '\0'; // null character, cleans out char array
+    char tempString[32]; //temporary character array
+    int quotient = decValue;
+    int i = 0;
+    char charValue;
+    int intValue;
+    while (quotient != 0) {
+        intValue = quotient % 8;
+        if (intValue < 10) {
+            charValue = intValue + 48; //1-9 characters
+            //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
+        }
+        else {
+            charValue = intValue + 55; //10-16 characters
+            //printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
+        }
+        tempString[i++] = charValue; // add character to temp string
+        quotient = quotient / 8; // divide by 16 to prep for next loop
+    }
+    tempString[i] = '\0'; // end the char array
+
+    int j = 0;
+    for (int k = i - 1; k >= 0; k--) { // need to reverse the order of the array
+        octString[j++] = tempString[k];
+    }
+    octString[j] = '\0'; // end char array
+
+
 }
 
 int saveUserFile() {
