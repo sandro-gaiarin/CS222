@@ -98,7 +98,7 @@ int getInteger() {
 }
 
 void decimalToBinary(int decValue, char binString[]) {
-    binString[0] = "\0"; // null character, cleans out char array
+    binString[0] = '\0'; // null character, cleans out char array
     int quotient = decValue;
     int i = 0;
     char charValue;
@@ -113,7 +113,7 @@ void decimalToBinary(int decValue, char binString[]) {
 }
 
 void decimalToHex(int decValue, char hexString[]) {
-    hexString[0] = "\0"; // null character, cleans out char array
+    hexString[0] = '\0'; // null character, cleans out char array
     int quotient = decValue;
     int i = 0;
     char charValue;
