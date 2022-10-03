@@ -122,11 +122,11 @@ void decimalToHex(int decValue, char hexString[]) {
         intValue = quotient % 16;
         if (intValue > 10) {
             charValue = intValue + 48;
-            printf("Character value: %c; Int value: %d", charValue, intValue); //TODO delete
+            printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
         else {
             charValue = intValue + 65;
-            printf("Character value: %c; Int value: %d", charValue, intValue); //TODO delete
+            printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
         hexString[i++] = charValue;
         quotient = quotient / 16;
