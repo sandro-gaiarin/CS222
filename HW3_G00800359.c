@@ -98,6 +98,7 @@ int getInteger() {
 }
 
 void decimalToBinary(int decValue, char binString[]) {
+    binString[0] = "\0"; // null character, cleans out char array
     int quotient = decValue;
     int i = 0;
     char charValue;
@@ -112,6 +113,7 @@ void decimalToBinary(int decValue, char binString[]) {
 }
 
 void decimalToHex(int decValue, char hexString[]) {
+    hexString[0] = "\0"; // null character, cleans out char array
     int quotient = decValue;
     int i = 0;
     char charValue;
@@ -120,9 +122,11 @@ void decimalToHex(int decValue, char hexString[]) {
         intValue = quotient % 16;
         if (intValue > 10) {
             charValue = intValue + 48;
+            printf("Character value: %c; Int value: %d", charValue, intValue); //TODO delete
         }
         else {
             charValue = intValue + 65;
+            printf("Character value: %c; Int value: %d", charValue, intValue); //TODO delete
         }
         hexString[i++] = charValue;
         quotient = quotient / 16;
