@@ -118,7 +118,12 @@ void decimalToHex(int decValue, char hexString[]) {
     int intValue;
     while (quotient != 0) {
         intValue = quotient % 16;
-        charValue = intValue + '0';
+        if (intValue > 10) {
+            charValue = intValue + '48';
+        }
+        else {
+            charValue = intValue + '65';
+        }
         hexString[i++] = charValue;
         quotient = quotient / 16;
     }
