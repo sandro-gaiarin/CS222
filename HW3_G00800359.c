@@ -46,8 +46,8 @@ int main() {
         if (saveBool == 1) {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
-            fileName[strcspn(fileName, "\n")] = 0; //TODO will this work?
-            printf("File name: %s", fileName); //TODO DELETE
+            fileName[strcspn(fileName, "\n")] = 0; //This removes the newline character at the end of the fgets of fileName
+            //printf("File name: %s", fileName); //TODO DELETE
             userFile = fopen(fileName, "w");
             //userFile = fopen("codetest.txt", "w");
             //writing to file:
@@ -100,18 +100,28 @@ int getInteger() {
 void decimalToBinary(int decValue, char binString[]) {
     int quotient = decValue;
     int i = 0;
-    char c;
-    int a;
+    char charValue;
+    int intValue;
     while (quotient != 0) {
         //binString[i++] = quotient % 2;
-        a = quotient % 2;
-        c = a + '0';
-        binString[i++] = c;
+        intValue = quotient % 2;
+        charValue = intValue + '0'; // converts int to char, kind of
+        binString[i++] = charValue;
         quotient = quotient / 2;
     }
 }
 
 void decimalToHex(int decValue, char hexString[]) {
+    int quotient = decValue;
+    int i = 0;
+    char charValue;
+    int intValue;
+    while (quotient != 0) {
+        intValue = quotient % 16;
+        charValue = intValue + '0';
+        hexString[i++] = charValue;
+        quotient = quotient / 16;
+    }
 }
 
 void decimalToOct(int decValue, char octString[]) {
