@@ -120,7 +120,7 @@ void decimalToHex(int decValue, char hexString[]) {
     int intValue;
     while (quotient != 0) {
         intValue = quotient % 16;
-        if (intValue > 10) {
+        if (intValue < 10) {
             charValue = intValue + 48;
             printf("TESTING: Character value: %c; Int value: %d\n", charValue, intValue); //TODO delete
         }
