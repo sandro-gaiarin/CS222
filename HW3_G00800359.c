@@ -119,10 +119,10 @@ void decimalToHex(int decValue, char hexString[]) {
     while (quotient != 0) {
         intValue = quotient % 16;
         if (intValue > 10) {
-            charValue = intValue + '48';
+            charValue = intValue + 48;
         }
         else {
-            charValue = intValue + '65';
+            charValue = intValue + 65;
         }
         hexString[i++] = charValue;
         quotient = quotient / 16;
