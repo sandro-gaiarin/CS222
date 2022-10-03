@@ -46,6 +46,7 @@ int main() {
         if (saveBool == 1) {
             printf("Enter file name: ");
             fgets(fileName, 32, stdin);
+            fileName[strcspn(fileName, "\n")] = 0; //TODO will this work?
             printf("File name: %s", fileName); //TODO DELETE
             userFile = fopen(fileName, "w");
             //userFile = fopen("codetest.txt", "w");
