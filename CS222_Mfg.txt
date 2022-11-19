@@ -1,0 +1,3 @@
+A0:FB:C5 Apple
+58:24:29 Google
+C4:18:E9 Samsung
