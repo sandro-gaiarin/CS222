@@ -48,7 +48,7 @@ int main() {
     printf("Data file successfully read. Attempting to print addresses...\n"); // DELETE
 
     for (int i = 0; i < 21; i++) { // TEST, DELETE
-        printf(addressArrayPointer_g[i].macAlias);
+        printf("%s", addressArrayPointer_g[i].macAlias);
     }
     //TODO
 }
@@ -90,7 +90,7 @@ void readDataFile() {
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
         }
-        *addressArrayPointer_g[i] = &buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
+        addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
         i++;
     }
     fclose(filePointer); // close the file
