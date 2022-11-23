@@ -45,7 +45,7 @@ char *getDateAndTime(); // reusing old code for this one
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
 
-    printf("Data file successfully read. Attempting to print addresses...\n") // DELETE
+    printf("Data file successfully read. Attempting to print addresses...\n"); // DELETE
 
     for (int i = 0; i < 21; i++) { // TEST, DELETE
         printf(addressArrayPointer[i]->macAlias);
@@ -81,17 +81,17 @@ void readDataFile() {
         recordCount++;
     }
     printf("Total mac entries: %d\n", recordCount);
-    addressArrayPointer = (address_t[]*) malloc(recordCount * sizeof(address_t)); // dynamically allocate memory for address_t array (TEST!!)
+    addressArrayPointer = (address_t*) malloc(recordCount * sizeof(address_t)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
     int i = 0; // index value
     while (fgets(charBuffer, recordCount, filePointer)) {
-        addressArrayPointer[i++] = buildAddressStruct(); // add the build address_t structs to the malloc'd array
+        addressArrayPointer[i++] = buildAddressStruct(); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
     }
     fclose(filePointer); // close the file
 }
 
-address_t buildAddressStruct(char[] addressLine) { // converts char array of a line into an address_t
+address_t buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
     /* 
     -32 for ASCII lowercase -> uppercase, Z == 90
     mac address: 0,1,3,4,6,7,9,10,12,13,15,16
