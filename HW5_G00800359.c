@@ -21,6 +21,7 @@ typedef struct {
     // char mac6[2];
     char macAlias[50]; // character array to store the mac alias 
     int validAddress; // boolean int
+    char macManufac[8]; // first six MAC address digits in a string format with ':'
 } address_t;
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
@@ -41,7 +42,10 @@ int checkAddress(address_t macAddress);
 Confirm that alias has strlen() <= 16
 */
 int checkAlias(address_t macAddress);
-int generateManufacturerRpt(); //TODO check return val on this
+/*
+Generate text file listing the different manufacturers and the devices associated with them.
+*/
+void generateManufacturerRpt(); //TODO check return val on this
 char *getDateAndTime(); // reusing old code for this one
 /*
 Builds address_t structure out of a line of characters
@@ -66,7 +70,8 @@ int main() {
         int length = strlen(addressArrayPointer_g[i].macAlias);
         printf("%s valid? %d; alias length: %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress, length);
     }
-    //TODO
+    
+
 
     free(addressArrayPointer_g);
 }
@@ -120,6 +125,8 @@ void readDataFile() {
         i++;
     }
     fclose(filePointer); // close the file
+
+
 }
 
 
@@ -150,6 +157,16 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
 
     returnAddress.mac[5][0] = toupper(addressLine[15]);
     returnAddress.mac[5][1] = toupper(addressLine[16]);
+
+    // I'm embaressed that I'm hard coding all of this, but my brain is fried. I swear I'm a decent programmer.
+    returnAddress.macManufac[0] = returnAddress.mac[0][0];
+    returnAddress.macManufac[1] = returnAddress.mac[0][1];
+    returnAddress.macManufac[2] = ":";
+    returnAddress.macManufac[3] = returnAddress.mac[1][0];
+    returnAddress.macManufac[4] = returnAddress.mac[1][1];
+    returnAddress.macManufac[5] = ":";
+    returnAddress.macManufac[6] = returnAddress.mac[2][0];
+    returnAddress.macManufac[7] = returnAddress.mac[2][1];
     
     int j = 0;
     for (int i = 18; i < 50; i++) {
@@ -191,4 +208,19 @@ int checkAlias(address_t macAddress) {
         return 0;
     }
     return 1;
+}
+
+void generateManufacturerRpt() {
+    int addressTotal = 0; // total number of different MAC addresses
+    int manufacturerTotal = 0; // total number of manufacturers represented
+
+    for (int i = 0; i < numAddresses_g; i++) {
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            addressTotal++;
+            // add each manufacturer to the list
+                // add the aliases below the manufacturer
+        }
+    }
+
+
 }
