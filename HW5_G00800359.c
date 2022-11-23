@@ -94,7 +94,7 @@ void readDataFile() {
 
     rewind(filePointer); // rewind the file
     int i = 0; // index value
-    while (fgets(charBuffer, recordCount, filePointer)) {
+    while (fgets(charBuffer, maxLineLength, filePointer)) {
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
         }
