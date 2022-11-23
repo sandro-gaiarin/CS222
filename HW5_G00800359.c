@@ -112,6 +112,8 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     mac alias: 18-33
     */
     address_t returnAddress;
+
+    printf("BuildAddressStruct() current line: %s\n", addressLine);
     // I can't think of a better way to do this other than hard coding it.
     returnAddress.mac1[0] = addressLine[0];
     returnAddress.mac1[1] = addressLine[1];
