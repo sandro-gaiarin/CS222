@@ -81,12 +81,15 @@ void readDataFile() {
         recordCount++;
     }
     printf("Total mac entries: %d\n", recordCount);
+
     addressArrayPointer_g = (address_t *) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
-    
 
     rewind(filePointer); // rewind the file
     int i = 0; // index value
     while (fgets(charBuffer, recordCount, filePointer)) {
+        if (strcmp(charBuffer, breakString) == 0) {
+            break; // break out of while loop if we reach the NONE alias
+        }
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
         i++;
     }
