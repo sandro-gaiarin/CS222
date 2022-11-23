@@ -22,7 +22,7 @@ typedef struct {
     int validAddress; // boolean int
 } address_t;
 
-address_t *addressArrayPointer; // GLOBAL VARIABLE
+address_t *addressArrayPointer_g; // GLOBAL VARIABLE
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -48,7 +48,7 @@ int main() {
     printf("Data file successfully read. Attempting to print addresses...\n"); // DELETE
 
     for (int i = 0; i < 21; i++) { // TEST, DELETE
-        printf(addressArrayPointer[i]->macAlias);
+        printf(addressArrayPointer_g[i].macAlias);
     }
     //TODO
 }
@@ -81,12 +81,12 @@ void readDataFile() {
         recordCount++;
     }
     printf("Total mac entries: %d\n", recordCount);
-    addressArrayPointer = (address_t*) malloc(recordCount * sizeof(address_t)); // dynamically allocate memory for address_t array (TEST!!)
+    addressArrayPointer_g = (address_t *)malloc(recordCount * sizeof(address_t)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
     int i = 0; // index value
     while (fgets(charBuffer, recordCount, filePointer)) {
-        addressArrayPointer[i++] = buildAddressStruct(); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
+        addressArrayPointer_g[i++] = buildAddressStruct(); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
     }
     fclose(filePointer); // close the file
 }
@@ -99,31 +99,31 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     */
     address_t returnAddress;
     // I can't think of a better way to do this other than hard coding it.
-    returnAddress->mac1[0] = addressLine[0];
-    returnAddress->mac1[1] = addressLine[1];
+    returnAddress.mac1[0] = addressLine[0];
+    returnAddress.mac1[1] = addressLine[1];
 
-    returnAddress->mac2[0] = addressLine[3];
-    returnAddress->mac2[1] = addressLine[4];
+    returnAddress.mac2[0] = addressLine[3];
+    returnAddress.mac2[1] = addressLine[4];
 
-    returnAddress->mac3[0] = addressLine[6];
-    returnAddress->mac3[1] = addressLine[7];
+    returnAddress.mac3[0] = addressLine[6];
+    returnAddress.mac3[1] = addressLine[7];
 
-    returnAddress->mac4[0] = addressLine[9];
-    returnAddress->mac4[1] = addressLine[10];
+    returnAddress.mac4[0] = addressLine[9];
+    returnAddress.mac4[1] = addressLine[10];
 
-    returnAddress->mac5[0] = addressLine[12];
-    returnAddress->mac5[1] = addressLine[13];
+    returnAddress.mac5[0] = addressLine[12];
+    returnAddress.mac5[1] = addressLine[13];
 
-    returnAddress->mac6[0] = addressLine[15];
-    returnAddress->mac6[1] = addressLine[16];
+    returnAddress.mac6[0] = addressLine[15];
+    returnAddress.mac6[1] = addressLine[16];
 
     j = 0;
     for (int i = 18; i <= 33; i++) {
-        returnAddress->macAlias[j] = addressLine[i];
+        returnAddress.macAlias[j] = addressLine[i];
         j++;
     }
 
-    returnAddress->validAddress = 1; // SET FOR TESTING PURPOSES, DELETE
+    returnAddress.validAddress = 1; // SET FOR TESTING PURPOSES, DELETE
 
     return returnAddress;
 }
