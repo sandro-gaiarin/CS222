@@ -22,7 +22,7 @@ typedef struct {
     int validAddress; // boolean int
 } address_t;
 
-address_t *addressArrayPointer_g; // GLOBAL VARIABLE
+address_t* addressArrayPointer_g; // GLOBAL VARIABLE
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -82,7 +82,7 @@ void readDataFile() {
     }
     printf("Total mac entries: %d\n", recordCount);
 
-    *addressArrayPointer_g = malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
+    *addressArrayPointer_g = (address_t *) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
     int i = 0; // index value
