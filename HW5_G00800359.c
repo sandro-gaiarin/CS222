@@ -3,6 +3,13 @@
 #include <string.h>
 #include <time.h>
 
+/*
+NOTES:
+if i add each line in the text file as a character array, the index values are:
+mac address: 0,1,3,4,6,7,9,10,12,13,15,16
+mac alias: 18-33
+*/
+
 typedef struct {
     int macArray[6]; //array to store mac address
     char macAlias[16]; //character array to store the mac alias 
@@ -49,10 +56,15 @@ void readDataFile() {
         printf("Unable to open 'CS222_Inet.txt' file.\n");
         exit(1);
     }
-    
-    while (fgets(charBuffer, maxLineLength, filePointer)) {
-        printf("Next line:");
-        printf(charBuffer);
+
+    int recordCount = 0;
+    char breakString[] = "00:00:00:00:00:00 NONE\n";
+    while (fgets(charBuffer, maxLineLength, filePointer)) { //count number of addresses
+        if (strcmp(charBuffer, breakString) == 0) {
+            break; //break out of while loop if we reach the NONE alias
+        }
+        recordCount++;
     }
+    printf("Total mac entries: %d", recordCount);
 
 }
