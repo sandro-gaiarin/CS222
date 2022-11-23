@@ -6,7 +6,7 @@
 struct address_t {
     int macArray[6]; //array to store mac address
     char macAlias[16]; //character array to store the mac alias 
-} address;
+};
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -18,11 +18,11 @@ void readDataFile();
 /*
 Confirm the MAC address components are in range 00 to FF
 */
-int checkAddress(address macAddress);
+int checkAddress(address_t macAddress);
 /*
 Confirm that alias has strlen() <= 16
 */
-int checkAlias(address macAddress);
+int checkAlias(address_t macAddress);
 int generateManufacturerRpt(); //TODO check return val on this
 char *getDateAndTime(); //reusing old code for this one
 
