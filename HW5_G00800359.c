@@ -48,7 +48,7 @@ int main() {
     printf("Data file successfully read. Attempting to print addresses...\n"); // DELETE
 
     for (int i = 0; i < 21; i++) { // TEST, DELETE
-        sprintf(addressArrayPointer_g[i].macAlias);
+        printf(addressArrayPointer_g[i].macAlias);
     }
     //TODO
 }
@@ -81,12 +81,12 @@ void readDataFile() {
         recordCount++;
     }
     printf("Total mac entries: %d\n", recordCount);
-    *addressArrayPointer_g = malloc(recordCount * sizeof(address_t)); // dynamically allocate memory for address_t array (TEST!!)
+    *addressArrayPointer_g = malloc(recordCount * sizeof(**addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
     int i = 0; // index value
     while (fgets(charBuffer, recordCount, filePointer)) {
-        addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
+        (*addressArrayPointer_g)[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
         i++;
     }
     fclose(filePointer); // close the file
