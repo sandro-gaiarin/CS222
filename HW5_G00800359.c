@@ -22,7 +22,7 @@ typedef struct {
     int validAddress; // boolean int
 } address_t;
 
-address_t* addressArrayPointer_g; // GLOBAL VARIABLE
+address_t *addressArrayPointer_g; // GLOBAL VARIABLE
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
