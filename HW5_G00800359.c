@@ -48,28 +48,34 @@ Builds address_t structure out of a line of characters
 */
 address_t buildAddressStruct(char addressLine[]);
 
+
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
     int i;
     for (i = 0; i < numAddresses_g; i++) {
-        addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]);
+        addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            addressArrayPointer_g[i].validAddress = checkAlias(addressArrayPointer_g[i]); // check alias validity
+        }
     }
 
     printf("Data file successfully read. Attempting to print addresses and their validity...\n"); // DELETE
 
     for (i = 0; i < 21; i++) { // TEST, DELETE
-        printf("%s valid? %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress);
+        printf("%s valid? %d; alias length: %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress, strlen(addressArrayPointer_g[i].macAlias));
     }
     //TODO
 
     free(addressArrayPointer_g);
 }
 
+
 char *getDateAndTime() {
     time_t t;
     time(&t);
     return ctime(&t);
 }
+
 
 void readDataFile() {
     char fileName[] = "CS222_Inet.txt";
@@ -114,6 +120,7 @@ void readDataFile() {
     fclose(filePointer); // close the file
 }
 
+
 address_t buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
     /* 
     -32 for ASCII lowercase -> uppercase, Z == 90
@@ -124,24 +131,6 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
 
     printf("BuildAddressStruct() current line: %s\n", addressLine); //TODO DELETE
     // I can't think of a better way to do this other than hard coding it.
-    // returnAddress.mac1[0] = toupper(addressLine[0]);
-    // returnAddress.mac1[1] = toupper(addressLine[1]);
-
-    // returnAddress.mac2[0] = toupper(addressLine[3]);
-    // returnAddress.mac2[1] = toupper(addressLine[4]);
-
-    // returnAddress.mac3[0] = toupper(addressLine[6]);
-    // returnAddress.mac3[1] = toupper(addressLine[7]);
-
-    // returnAddress.mac4[0] = toupper(addressLine[9]);
-    // returnAddress.mac4[1] = toupper(addressLine[10]);
-
-    // returnAddress.mac5[0] = toupper(addressLine[12]);
-    // returnAddress.mac5[1] = toupper(addressLine[13]);
-
-    // returnAddress.mac6[0] = toupper(addressLine[15]);
-    // returnAddress.mac6[1] = toupper(addressLine[16]);
-
     returnAddress.mac[0][0] = toupper(addressLine[0]);
     returnAddress.mac[0][1] = toupper(addressLine[1]);
 
@@ -174,10 +163,11 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
         i++;
     } */
 
-    returnAddress.validAddress = 1; // SET FOR TESTING PURPOSES, DELETE
+    returnAddress.validAddress = 1;
 
     return returnAddress;
 }
+
 
 int checkAddress(address_t macAddress) {
     int i;
@@ -189,5 +179,9 @@ int checkAddress(address_t macAddress) {
             }
         }
     }
+    return 1;
+}
+
+int checkAlias(address_t macAddress) {
     return 1;
 }
