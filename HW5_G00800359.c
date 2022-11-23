@@ -52,7 +52,7 @@ int main() {
     printf("Data file successfully read. Attempting to print addresses...\n"); // DELETE
 
     for (int i = 0; i < 21; i++) { // TEST, DELETE
-        printf("%s", addressArrayPointer_g[i].macAlias);
+        printf("%s\n", addressArrayPointer_g[i].macAlias);
     }
     //TODO
 }
