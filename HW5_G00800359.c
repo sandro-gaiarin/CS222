@@ -86,7 +86,7 @@ void readDataFile() {
     rewind(filePointer); // rewind the file
     int i = 0; // index value
     while (fgets(charBuffer, recordCount, filePointer)) {
-        addressArrayPointer_g[i++] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
+        addressArrayPointer_g[i++] = &buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array //TODO FIX, THIS DOESN'T WORK
     }
     fclose(filePointer); // close the file
 }
@@ -117,7 +117,7 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     returnAddress.mac6[0] = addressLine[15];
     returnAddress.mac6[1] = addressLine[16];
 
-    j = 0;
+    int j = 0;
     for (int i = 18; i <= 33; i++) {
         returnAddress.macAlias[j] = addressLine[i];
         j++;
