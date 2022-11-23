@@ -135,20 +135,20 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
 
     returnAddress.mac6[0] = toupper(addressLine[15]);
     returnAddress.mac6[1] = toupper(addressLine[16]);
-    /*
+    
     int j = 0;
     for (int i = 18; i < 50; i++) {
         returnAddress.macAlias[j] = toupper(addressLine[i]);
         j++;
-    }*/
-    
+    }
+    /*
     int j = 0;
     int i = 18;
     while (addressLine[i] != "\n") {
         returnAddress.macAlias[j] = toupper(addressLine[i]);
         j++;
         i++;
-    } 
+    } */
 
     returnAddress.validAddress = 1; // SET FOR TESTING PURPOSES, DELETE
 
