@@ -140,7 +140,7 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     }*/
     int j = 0;
     int i = 18;
-    while (addressLine[i] != "\n") {
+    while (&addressLine[i] != "\n") {
         returnAddress.macAlias[j++] = addressLine[i++];
     }
 
