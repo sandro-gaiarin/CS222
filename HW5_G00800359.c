@@ -50,7 +50,8 @@ void readDataFile() {
         exit(1);
     }
     
-    while (fgets(charBuffer, maxLineLength, filePointer) && (charBuffer != "00:00:00:00:00:00 NONE\n")) {
+    while (fgets(charBuffer, maxLineLength, filePointer)) {
+        printf("Next line:");
         printf(charBuffer);
     }
 
