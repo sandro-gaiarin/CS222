@@ -55,6 +55,8 @@ int main() {
         printf("%s\n", addressArrayPointer_g[i].macAlias);
     }
     //TODO
+
+    free(addressArrayPointer_g);
 }
 
 char *getDateAndTime() {
