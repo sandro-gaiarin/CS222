@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <time.h>
 
 /*
@@ -117,27 +118,27 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
 
     printf("BuildAddressStruct() current line: %s\n", addressLine); //TODO DELETE
     // I can't think of a better way to do this other than hard coding it.
-    returnAddress.mac1[0] = addressLine[0];
-    returnAddress.mac1[1] = addressLine[1];
+    returnAddress.mac1[0] = toupper(addressLine[0]);
+    returnAddress.mac1[1] = toupper(addressLine[1]);
 
-    returnAddress.mac2[0] = addressLine[3];
-    returnAddress.mac2[1] = addressLine[4];
+    returnAddress.mac2[0] = toupper(addressLine[3]);
+    returnAddress.mac2[1] = toupper(addressLine[4]);
 
-    returnAddress.mac3[0] = addressLine[6];
-    returnAddress.mac3[1] = addressLine[7];
+    returnAddress.mac3[0] = toupper(addressLine[6]);
+    returnAddress.mac3[1] = toupper(addressLine[7]);
 
-    returnAddress.mac4[0] = addressLine[9];
-    returnAddress.mac4[1] = addressLine[10];
+    returnAddress.mac4[0] = toupper(addressLine[9]);
+    returnAddress.mac4[1] = toupper(addressLine[10]);
 
-    returnAddress.mac5[0] = addressLine[12];
-    returnAddress.mac5[1] = addressLine[13];
+    returnAddress.mac5[0] = toupper(addressLine[12]);
+    returnAddress.mac5[1] = toupper(addressLine[13]);
 
-    returnAddress.mac6[0] = addressLine[15];
-    returnAddress.mac6[1] = addressLine[16];
+    returnAddress.mac6[0] = toupper(addressLine[15]);
+    returnAddress.mac6[1] = toupper(addressLine[16]);
 
     int j = 0;
     for (int i = 18; i < 50; i++) {
-        returnAddress.macAlias[j] = addressLine[i];
+        returnAddress.macAlias[j] = toupper(addressLine[i]);
         j++;
     }
     /*
