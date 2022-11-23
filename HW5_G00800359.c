@@ -24,6 +24,7 @@ typedef struct {
 } address_t;
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
+int numAddresses_g; // global variable
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -49,11 +50,15 @@ address_t buildAddressStruct(char addressLine[]);
 
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
+    int i;
+    for (i = 0; i < numAddresses_g; i++) {
+        addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]);
+    }
 
-    printf("Data file successfully read. Attempting to print addresses...\n"); // DELETE
+    printf("Data file successfully read. Attempting to print addresses and their validity...\n"); // DELETE
 
-    for (int i = 0; i < 21; i++) { // TEST, DELETE
-        printf("%s\n", addressArrayPointer_g[i].macAlias);
+    for (i = 0; i < 21; i++) { // TEST, DELETE
+        printf("%s valid? %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress);
     }
     //TODO
 
@@ -88,6 +93,7 @@ void readDataFile() {
         recordCount++;
     }
     printf("Total mac entries: %d\n", recordCount);
+    numAddresses_g = recordCount;
 
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
     printf("address pointer successfully assigned.\n");
@@ -172,10 +178,16 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
 
     return returnAddress;
 }
-/*
+
 int checkAddress(address_t macAddress) {
     int i;
-    for (i = 0; i < 3; i++) {
-
+    for (i = 0; i < 6; i++) { // there will always be six pairs for the mac address
+        int j = 0;
+        for (j = 0; j < 2; j++) {
+            if (macAddress.mac[i][j] > 70) { // character F is 70 in ASCII
+                return 0;
+            }
+        }
     }
-}*/
+    return 1;
+}
