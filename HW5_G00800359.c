@@ -86,10 +86,10 @@ void readDataFile() {
     }
     printf("Total mac entries: %d\n", recordCount);
 
+    *addressArrayPointer_g = (address_t *) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
     address_t addressArray[recordCount];
     addressArrayPointer_g = &addressArray[0];
     printf("Address array created successfully.");
-    // *addressArrayPointer_g = (address_t *) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
     int i = 0; // index value
