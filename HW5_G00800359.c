@@ -41,6 +41,10 @@ Confirm that alias has strlen() <= 16
 int checkAlias(address_t macAddress);
 int generateManufacturerRpt(); //TODO check return val on this
 char *getDateAndTime(); // reusing old code for this one
+/*
+Builds address_t structure out of a line of characters
+*/
+address_t buildAddressStruct(char addressLine[]);
 
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
@@ -94,7 +98,7 @@ void readDataFile() {
             break; // break out of while loop if we reach the NONE alias
         }
         //addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
-        addressArray[i] = &buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
+        addressArray[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         i++;
     }
     fclose(filePointer); // close the file
