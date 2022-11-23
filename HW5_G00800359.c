@@ -3,10 +3,10 @@
 #include <string.h>
 #include <time.h>
 
-struct address_t {
+struct address {
     int macArray[6]; //array to store mac address
     char macAlias[16]; //character array to store the mac alias 
-};
+} address_t;
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
