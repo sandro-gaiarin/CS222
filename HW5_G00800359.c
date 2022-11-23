@@ -12,13 +12,13 @@ mac alias: 18-33
 */
 
 typedef struct {
-    //int macArray[6]; // array to store mac address
-    char mac1[2];
-    char mac2[2];
-    char mac3[2];
-    char mac4[2];
-    char mac5[2];
-    char mac6[2];
+    char mac[6][2]; // array to store mac address
+    // char mac1[2];
+    // char mac2[2];
+    // char mac3[2];
+    // char mac4[2];
+    // char mac5[2];
+    // char mac6[2];
     char macAlias[50]; // character array to store the mac alias 
     int validAddress; // boolean int
 } address_t;
@@ -118,23 +118,41 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
 
     printf("BuildAddressStruct() current line: %s\n", addressLine); //TODO DELETE
     // I can't think of a better way to do this other than hard coding it.
-    returnAddress.mac1[0] = toupper(addressLine[0]);
-    returnAddress.mac1[1] = toupper(addressLine[1]);
+    // returnAddress.mac1[0] = toupper(addressLine[0]);
+    // returnAddress.mac1[1] = toupper(addressLine[1]);
 
-    returnAddress.mac2[0] = toupper(addressLine[3]);
-    returnAddress.mac2[1] = toupper(addressLine[4]);
+    // returnAddress.mac2[0] = toupper(addressLine[3]);
+    // returnAddress.mac2[1] = toupper(addressLine[4]);
 
-    returnAddress.mac3[0] = toupper(addressLine[6]);
-    returnAddress.mac3[1] = toupper(addressLine[7]);
+    // returnAddress.mac3[0] = toupper(addressLine[6]);
+    // returnAddress.mac3[1] = toupper(addressLine[7]);
 
-    returnAddress.mac4[0] = toupper(addressLine[9]);
-    returnAddress.mac4[1] = toupper(addressLine[10]);
+    // returnAddress.mac4[0] = toupper(addressLine[9]);
+    // returnAddress.mac4[1] = toupper(addressLine[10]);
 
-    returnAddress.mac5[0] = toupper(addressLine[12]);
-    returnAddress.mac5[1] = toupper(addressLine[13]);
+    // returnAddress.mac5[0] = toupper(addressLine[12]);
+    // returnAddress.mac5[1] = toupper(addressLine[13]);
 
-    returnAddress.mac6[0] = toupper(addressLine[15]);
-    returnAddress.mac6[1] = toupper(addressLine[16]);
+    // returnAddress.mac6[0] = toupper(addressLine[15]);
+    // returnAddress.mac6[1] = toupper(addressLine[16]);
+
+    returnAddress.mac[0][0] = toupper(addressLine[0]);
+    returnAddress.mac[0][1] = toupper(addressLine[1]);
+
+    returnAddress.mac[1][0] = toupper(addressLine[3]);
+    returnAddress.mac[1][1] = toupper(addressLine[4]);
+
+    returnAddress.mac[2][0] = toupper(addressLine[6]);
+    returnAddress.mac[2][1] = toupper(addressLine[7]);
+
+    returnAddress.mac[3][0] = toupper(addressLine[9]);
+    returnAddress.mac[3][1] = toupper(addressLine[10]);
+
+    returnAddress.mac[4][0] = toupper(addressLine[12]);
+    returnAddress.mac[4][1] = toupper(addressLine[13]);
+
+    returnAddress.mac[5][0] = toupper(addressLine[15]);
+    returnAddress.mac[5][1] = toupper(addressLine[16]);
     
     int j = 0;
     for (int i = 18; i < 50; i++) {
@@ -154,3 +172,10 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
 
     return returnAddress;
 }
+/*
+int checkAddress(address_t macAddress) {
+    int i;
+    for (i = 0; i < 3; i++) {
+
+    }
+}*/
