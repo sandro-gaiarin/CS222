@@ -93,7 +93,8 @@ void readDataFile() {
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
         }
-        addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
+        //addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
+        addressArray[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         i++;
     }
     fclose(filePointer); // close the file
