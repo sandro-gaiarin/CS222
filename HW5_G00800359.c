@@ -62,7 +62,8 @@ int main() {
     printf("Data file successfully read. Attempting to print addresses and their validity...\n"); // DELETE
 
     for (i = 0; i < 21; i++) { // TEST, DELETE
-        printf("%s valid? %d; alias length: %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress, strlen(addressArrayPointer_g[i].macAlias));
+        int length = strlen(addressArrayPointer_g[i].macAlias);
+        printf("%s valid? %d; alias length: %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress, length);
     }
     //TODO
 
