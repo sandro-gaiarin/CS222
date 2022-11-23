@@ -96,7 +96,7 @@ void readDataFile() {
     fclose(filePointer); // close the file
 }
 
-address_t *buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
+address_t buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
     /* 
     -32 for ASCII lowercase -> uppercase, Z == 90
     mac address: 0,1,3,4,6,7,9,10,12,13,15,16
