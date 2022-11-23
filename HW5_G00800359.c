@@ -136,7 +136,7 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     returnAddress.mac6[1] = addressLine[16];
 
     int j = 0;
-    for (int i = 18; i < 33; i++) {
+    for (int i = 18; i < 50; i++) {
         returnAddress.macAlias[j] = addressLine[i];
         j++;
     }
