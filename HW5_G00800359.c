@@ -18,7 +18,7 @@ typedef struct {
     char mac4[2];
     char mac5[2];
     char mac6[2];
-    char macAlias[50]; // character array to store the mac alias 
+    char macAlias[16]; // character array to store the mac alias 
     int validAddress; // boolean int
 } address_t;
 
@@ -142,7 +142,7 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     }*/
     int j = 0;
     int i = 18;
-    while (&addressLine[i] != "\n") {
+    while (addressLine[i] > "\n") {
         returnAddress.macAlias[j++] = addressLine[i++];
     }
 
