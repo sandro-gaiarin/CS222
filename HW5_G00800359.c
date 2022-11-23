@@ -18,7 +18,7 @@ typedef struct {
     char mac4[2];
     char mac5[2];
     char mac6[2];
-    char macAlias[16]; // character array to store the mac alias 
+    char macAlias[60]; // character array to store the mac alias 
     int validAddress; // boolean int
 } address_t;
 
