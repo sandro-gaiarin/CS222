@@ -52,6 +52,7 @@ address_t buildAddressStruct(char addressLine[]);
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
     int i;
+    // Check validity of address and alias:
     for (i = 0; i < numAddresses_g; i++) {
         addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
         if (addressArrayPointer_g[i].validAddress == 1) {
@@ -184,5 +185,10 @@ int checkAddress(address_t macAddress) {
 }
 
 int checkAlias(address_t macAddress) {
+    macAddress.macAlias[strcspn(macAddress.macAlias, "\n")] = 0;
+    int length = strlen(macAddress.macAlias);
+    if (length > 16) {
+        return 0;
+    }
     return 1;
 }
