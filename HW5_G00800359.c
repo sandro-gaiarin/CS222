@@ -55,14 +55,6 @@ address_t buildAddressStruct(char addressLine[]);
 
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
-    int i;
-    // Check validity of address and alias:
-    for (i = 0; i < numAddresses_g; i++) {
-        addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
-        if (addressArrayPointer_g[i].validAddress == 1) {
-            addressArrayPointer_g[i].validAddress = checkAlias(addressArrayPointer_g[i]); // check alias validity
-        }
-    }
 
     printf("Data file successfully read. Attempting to print addresses and their validity...\n"); // DELETE
 
@@ -124,9 +116,16 @@ void readDataFile() {
         //[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         i++;
     }
+
+    // Check validity of address and alias:
+    for (i = 0; i < numAddresses_g; i++) {
+        addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            addressArrayPointer_g[i].validAddress = checkAlias(addressArrayPointer_g[i]); // check alias validity
+        }
+    }
+
     fclose(filePointer); // close the file
-
-
 }
 
 
