@@ -125,7 +125,7 @@ void readDataFile() {
 
     filePointer = fopen(fileName, "r");
     int i = 0; // index value
-    int bookmark; //pos in file stream
+    fpos_t position;
     while (fgets(charBuffer, maxLineLength, filePointer)) {
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
@@ -133,13 +133,13 @@ void readDataFile() {
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         if (checkAddress(addressArrayPointer_g[i]) == 0 || checkAlias(addressArrayPointer_g[i]) == 0) { // check validity
             addressArrayPointer_g[i].validAddress = 0;
-            bookmark = fgetpos(filePointer);
+            fgetpos(filePointer, &position);
             fclose(filePointer);
             errorFile = fopen("222_Error_Report.txt", "a");
             fprintf(errorFile, "%s", charBuffer);
             fclose(errorFile);
             filePointer = fopen(fileName, "r");
-            fsetpos(filePointer, bookmark);
+            fsetpos(filePointer, &position);
             //fprintf(errorFile, "%s", charBuffer); // add invalid mac address to the error file
         }
         //[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
