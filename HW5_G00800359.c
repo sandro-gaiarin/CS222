@@ -115,8 +115,9 @@ void readDataFile() {
     fgets(userName, 32, stdin);
     userName[strcspn(userName, "\n")] = 0; //remove newline from end of userName
 
-    fprintf(errorFile, "%s %s\n", userName, getDateAndTime());
-    fprintf(errorFile, "CS222 Error Report\n\n");
+    fprintf(errorFile, "%s ", userName);
+    fprintf(errorFile, "%s\n", getDateAndTime());
+    fprintf(errorFile, "CS222 Error Report\n");
 
     int i = 0; // index value
     while (fgets(charBuffer, maxLineLength, filePointer)) {
