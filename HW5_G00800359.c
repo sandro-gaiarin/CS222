@@ -56,15 +56,11 @@ address_t buildAddressStruct(char addressLine[]);
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
     int i = 0;
-
     printf("Data file successfully read. Attempting to print addresses and their validity...\n"); // DELETE
-
     for (i = 0; i < 21; i++) { // TEST, DELETE
         int length = strlen(addressArrayPointer_g[i].macAlias);
         printf("%s valid? %d; alias length: %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress, length);
     }
-    
-
 
     free(addressArrayPointer_g);
 }
@@ -110,8 +106,8 @@ void readDataFile() {
     rewind(filePointer); // rewind the file
 
     FILE *errorFile = fopen("222_Error_Report.txt", "w"); // create error file
-    char userName[32];
-    printf("Please enter user name: ");
+    char userName[32] = "TEST USERNAME";
+   // printf("Please enter user name: ");
     fgets(userName, 32, stdin);
     userName[strcspn(userName, "\n")] = 0; //remove newline from end of userName
 
