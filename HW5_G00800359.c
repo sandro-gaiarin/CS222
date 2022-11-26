@@ -107,6 +107,7 @@ void readDataFile() {
 
     FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
+    printf("Error file open attempt created");
     if (errorFile == NULL) { //TEST
         perror("The following error occurred.");
     }
