@@ -106,6 +106,11 @@ void readDataFile() {
     rewind(filePointer); // rewind the file
 
     FILE *errorFile = fopen("222_Error_File.txt", "w+"); // create error file
+    if (errorFile == NULL) { //TEST
+        perror("The following error occurred.")
+    }
+
+
     char userName[32] = "TEST USERNAME\n";
     // printf("Please enter user name: ");
     // fgets(userName, 32, stdin);
