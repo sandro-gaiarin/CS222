@@ -107,7 +107,7 @@ void readDataFile() {
 
     FILE *errorFile = fopen("222_Error_File.txt", "w+"); // create error file
     if (errorFile == NULL) { //TEST
-        perror("The following error occurred.")
+        perror("The following error occurred.");
     }
 
 
