@@ -144,7 +144,7 @@ void readDataFile() {
     //     }
     // }
 
-
+    printf("Trying to close errorfile...\n");
     fclose(errorFile);
     printf("Error file successfully closed.");
     fclose(filePointer); // close the file
