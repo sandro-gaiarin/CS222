@@ -105,9 +105,9 @@ void readDataFile() {
 
     rewind(filePointer); // rewind the file
 
-    FILE *errorFile = fopen("222_Error_Report.txt", "w"); // create error file
-    char userName[32] = "TEST USERNAME";
-   // printf("Please enter user name: ");
+    FILE *errorFile = fopen("222_Error_File.txt", "w+"); // create error file
+    char userName[32] = "TEST USERNAME\n";
+    // printf("Please enter user name: ");
     // fgets(userName, 32, stdin);
     userName[strcspn(userName, "\n")] = 0; //remove newline from end of userName
 
