@@ -105,7 +105,8 @@ void readDataFile() {
 
     rewind(filePointer); // rewind the file
 
-    FILE *errorFile = fopen("222_Error_File.txt", "w+"); // create error file
+    FILE *errorFile; // create error file
+    errorFile = fopen("222_Error_Report.txt", "w");
     if (errorFile == NULL) { //TEST
         perror("The following error occurred.");
     }
