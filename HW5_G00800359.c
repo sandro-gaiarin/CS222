@@ -104,14 +104,14 @@ void readDataFile() {
     printf("Address array created successfully.\n");
 
     rewind(filePointer); // rewind the file
+    fclose(filePointer);
 
     FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
     printf("Error file open attempt created\n");
-    if (errorFile == NULL) { //TEST
+    if (errorFile == NULL) { // THIS DOESN'T FIRE, SO IT'S NOT NULL ON OPEN
         printf("File opening error occured.\n");
     }
-
 
     char userName[32] = "TEST USERNAME\n";
     // printf("Please enter user name: ");
@@ -122,6 +122,8 @@ void readDataFile() {
     fprintf(errorFile, "%s\n", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n");
 
+    filePointer = fopen(fileName, "r");
+    
     int i = 0; // index value
     while (fgets(charBuffer, maxLineLength, filePointer)) {
         if (strcmp(charBuffer, breakString) == 0) {
@@ -136,6 +138,13 @@ void readDataFile() {
         i++;
     }
 
+    fclose(filePointer); // close the file
+    printf("filePointer successfully closed. ");
+    fclose(errorFile);
+    printf("Error file successfully closed.");
+
+}
+
     // // Check validity of address and alias:
     // for (i = 0; i < numAddresses_g; i++) {
     //     addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
@@ -143,13 +152,6 @@ void readDataFile() {
     //         addressArrayPointer_g[i].validAddress = checkAlias(addressArrayPointer_g[i]); // check alias validity
     //     }
     // }
-    fclose(filePointer); // close the file
-    printf("filePointer successfully closed. ");
-    printf("Trying to close errorfile...\n");
-    fclose(errorFile);
-    printf("Error file successfully closed.");
-
-}
 
 
 address_t buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
