@@ -108,24 +108,40 @@ void readDataFile() {
     printf("Address array created successfully.\n");
 
     rewind(filePointer); // rewind the file
+
+    FILE *errorFile = fopen("222_Error_Report.txt", "w"); // create error file
+    char userName[32];
+    printf("Please enter user name: ");
+    fgets(userName, 32, stdin);
+    userName[strcspn(userName, "\n")] = 0; //remove newline from end of userName
+
+    fprintf(errorFile, "%s %s\n", userName, getDateAndTime());
+    fprintf(errorFile, "CS222 Error Report\n\n");
+
     int i = 0; // index value
     while (fgets(charBuffer, maxLineLength, filePointer)) {
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
         }
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
+        if (checkAddress(addressArrayPointer_g[i]) == 0 || checkAlias(addressArrayPointer_g[i]) == 0) { // check validity
+            addressArrayPointer_g[i].validAddress = 0;
+            fprintf(errorFile, "%s", charBuffer); // add invalid mac address to the error file
+        }
         //[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         i++;
     }
 
-    // Check validity of address and alias:
-    for (i = 0; i < numAddresses_g; i++) {
-        addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
-        if (addressArrayPointer_g[i].validAddress == 1) {
-            addressArrayPointer_g[i].validAddress = checkAlias(addressArrayPointer_g[i]); // check alias validity
-        }
-    }
+    // // Check validity of address and alias:
+    // for (i = 0; i < numAddresses_g; i++) {
+    //     addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
+    //     if (addressArrayPointer_g[i].validAddress == 1) {
+    //         addressArrayPointer_g[i].validAddress = checkAlias(addressArrayPointer_g[i]); // check alias validity
+    //     }
+    // }
 
+
+    fclose(errorFile);
     fclose(filePointer); // close the file
 }
 
@@ -169,18 +185,10 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     returnAddress.macManufac[7] = returnAddress.mac[2][1];
     
     int j = 0;
-    for (int i = 18; i < 50; i++) {
+    for (int i = 18; i < 50; i++) { // make all characters uppercase
         returnAddress.macAlias[j] = toupper(addressLine[i]);
         j++;
     }
-    /*
-    int j = 0;
-    int i = 18;
-    while (addressLine[i] != "\n") {
-        returnAddress.macAlias[j] = toupper(addressLine[i]);
-        j++;
-        i++;
-    } */
 
     returnAddress.validAddress = 1;
 
