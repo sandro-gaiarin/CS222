@@ -4,6 +4,8 @@
 #include <ctype.h>
 #include <time.h>
 
+#define FOPEN_MAX (16)
+
 /*
 NOTES:
 if i add each line in the text file as a character array, the index values are:
@@ -104,7 +106,6 @@ void readDataFile() {
     printf("Address array created successfully.\n");
 
     rewind(filePointer); // rewind the file
-    fclose(filePointer);
 
     FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
@@ -122,8 +123,6 @@ void readDataFile() {
     fprintf(errorFile, "%s\n", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n");
 
-    filePointer = fopen(fileName, "r");
-    
     int i = 0; // index value
     while (fgets(charBuffer, maxLineLength, filePointer)) {
         if (strcmp(charBuffer, breakString) == 0) {
