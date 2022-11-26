@@ -126,7 +126,7 @@ void readDataFile() {
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         if (checkAddress(addressArrayPointer_g[i]) == 0 || checkAlias(addressArrayPointer_g[i]) == 0) { // check validity
             addressArrayPointer_g[i].validAddress = 0;
-            fprintf(errorFile, "%s", charBuffer); // add invalid mac address to the error file
+            //fprintf(errorFile, "%s", charBuffer); // add invalid mac address to the error file
         }
         //[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         i++;
