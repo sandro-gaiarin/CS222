@@ -55,6 +55,7 @@ address_t buildAddressStruct(char addressLine[]);
 
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
+    int i = 0;
 
     printf("Data file successfully read. Attempting to print addresses and their validity...\n"); // DELETE
 
@@ -160,10 +161,10 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     // I'm embaressed that I'm hard coding all of this, but my brain is fried. I swear I'm a decent programmer.
     returnAddress.macManufac[0] = returnAddress.mac[0][0];
     returnAddress.macManufac[1] = returnAddress.mac[0][1];
-    returnAddress.macManufac[2] = ":";
+    returnAddress.macManufac[2] = ':';
     returnAddress.macManufac[3] = returnAddress.mac[1][0];
     returnAddress.macManufac[4] = returnAddress.mac[1][1];
-    returnAddress.macManufac[5] = ":";
+    returnAddress.macManufac[5] = ':';
     returnAddress.macManufac[6] = returnAddress.mac[2][0];
     returnAddress.macManufac[7] = returnAddress.mac[2][1];
     
