@@ -4,8 +4,6 @@
 #include <ctype.h>
 #include <time.h>
 
-#define FOPEN_MAX (16)
-
 /*
 NOTES:
 if i add each line in the text file as a character array, the index values are:
@@ -106,6 +104,7 @@ void readDataFile() {
     printf("Address array created successfully.\n");
 
     rewind(filePointer); // rewind the file
+    fclose(filePointer);
 
     FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
@@ -122,8 +121,11 @@ void readDataFile() {
     fprintf(errorFile, "%s ", userName);
     fprintf(errorFile, "%s\n", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n");
+    fclose(errorFile);
 
+    filePointer = fopen(fileName, "r");
     int i = 0; // index value
+    int bookmark; //pos in file stream
     while (fgets(charBuffer, maxLineLength, filePointer)) {
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
@@ -131,6 +133,13 @@ void readDataFile() {
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         if (checkAddress(addressArrayPointer_g[i]) == 0 || checkAlias(addressArrayPointer_g[i]) == 0) { // check validity
             addressArrayPointer_g[i].validAddress = 0;
+            bookmark = fgetpos(filePointer);
+            fclose(filePointer);
+            errorFile = fopen("222_Error_Report.txt", "a");
+            fprintf(errorFile, "%s", charBuffer);
+            fclose(errorFile);
+            filePointer = fopen(fileName, "r");
+            fsetpos(filePointer, bookmark);
             //fprintf(errorFile, "%s", charBuffer); // add invalid mac address to the error file
         }
         //[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
@@ -139,8 +148,6 @@ void readDataFile() {
 
     fclose(filePointer); // close the file
     printf("filePointer successfully closed. ");
-    fclose(errorFile);
-    printf("Error file successfully closed.");
 
 }
 
