@@ -230,21 +230,22 @@ int checkAlias(address_t macAddress) {
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different VALID MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
-    char manufactArray[21][9];
-    int manuArrayLen = 21;
+    int arrayLen = sizeof(addressArrayPointer_g)/sizeof(addressArrayPointer_g[0]);
+    char manufactArray[arrayLen][9];
 
-    for (int i = 0; i < 21; i++) { // clean out character arrays
+
+    for (int i = 0; i < arrayLen; i++) { // clean out character arrays
         manufactArray[i][0] = '\0';
     }
 
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < arrayLen; i++) {
         printf("Within first for-loop.\n");
         if (addressArrayPointer_g[i].validAddress == 1) {
             printf("Within first if-statement.\n");
             addressTotal++;
 
             int manuCounted = 0;
-            for (int j = 0; j < manuArrayLen; j++) {
+            for (int j = 0; j < arrayLen; j++) {
                 printf("Within second for-loop.\n");
                 printf("Current macManufac: %s. Current manufactArray: %s\n", addressArrayPointer_g[i].macManufac, manufactArray[j]);
                 if (strcmp(addressArrayPointer_g[i].macManufac, manufactArray[j]) == 0) {
@@ -275,7 +276,7 @@ void generateManufacturerRpt() {
     printf("Total number of valid addresses: %d\n", addressTotal);
     printf("Total number of unique manufacturers: %d\n", manufacturerTotal);
     printf("Valid manufacturers: \n");
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < arrayLen; i++) {
         printf("   %s\n", manufactArray[i]);
     }
 }
