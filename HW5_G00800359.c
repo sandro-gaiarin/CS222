@@ -378,5 +378,8 @@ manufacturer_t* readMfgFile() {
 }
 
 void generateMfgRptByName(manufacturer_t *manufacturerArray) {
+    for (int i = 0; i < 3; i++) {
+        printf("%s", manufacturerArray[i].manufacName);
+    }
     printf("Great success!!!\n");
 }
