@@ -408,7 +408,7 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
         }
         fprintf(fileWriter, "\n");
     }
-    fprintf(fileWriter, "(Unknown)");
+    fprintf(fileWriter, "(Unknown)\n");
     for (int i = 0; i < totalAddresses_g; i++) { // populate the list of Unknown manufacturers
         if (addressArrayPointer_g[i].validAddress == 1) {
             int seen = 0;
