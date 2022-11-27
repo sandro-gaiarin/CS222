@@ -87,9 +87,9 @@ int main() {
     }
 
     generateManufacturerRpt();
-    manufacturer_t *manufacturerArray = (manufacturer_t*) malloc(recordCount * sizeof(manufacturer_t));
+    manufacturer_t *manufacturerArray;
     manufacturerArray = readMfgFile();
-    
+
     printf("ManufacturerArray assigned, I think\n");
     generateMfgRptByName(manufacturerArray);
 
@@ -373,7 +373,7 @@ manufacturer_t* readMfgFile() {
     printf("Finished whole while loop.\n");
     fclose(fileReader);
     printf("fileReader has closed.\n");
-    return returnArrayPointer;
+    return *returnArrayPointer;
 }
 
 void generateMfgRptByName(manufacturer_t *manufacturerArray) {
