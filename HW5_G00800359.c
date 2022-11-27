@@ -240,7 +240,7 @@ void generateManufacturerRpt() {
 
             int manuCounted = 0;
             for (int j = 0; j < manuArrayLen; j++) {
-                printf("Within second for-loop.");
+                printf("Within second for-loop.\n");
                 if (strcmp(addressArrayPointer_g[i].macManufac, manufactArray[j]) == 0) {
                     printf("Within first if statement - duplicate found.\n");
                     // if the manufacturer is already in the list, it has already been counted
@@ -259,7 +259,7 @@ void generateManufacturerRpt() {
                 printf("Adding on to manufacturer total.\n");
                 manufacturerTotal++;
             }
-
+            printf("\n");
             // add each manufacturer to the list
                 // add the aliases below the manufacturer
         }
