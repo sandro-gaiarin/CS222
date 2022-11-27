@@ -74,7 +74,6 @@ char *getDateAndTime() {
 
 
 void readDataFile() {
-    char fileName[] = "CS222_Inet.txt";
     FILE *filePointer;
     filePointer = fopen("CS222_Inet.txt", "r"); // point filePointer at file
 
