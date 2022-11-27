@@ -105,9 +105,6 @@ void readDataFile() {
     FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
     //printf("Error file open attempt created\n");
-    if (errorFile == NULL) { // THIS DOESN'T FIRE, SO IT'S NOT NULL ON OPEN
-        printf("File opening error occured.\n");
-    }
 
     char userName[32];
     printf("Please enter user name: ");
