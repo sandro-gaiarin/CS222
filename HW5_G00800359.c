@@ -432,11 +432,11 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
 }
 
 void generatePropertyRpt() {
-    const char binaryNums = {"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
-    const char hexDigits = "0123456789ABCDEF";
+    char binaryNums[16][5] = {"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
+    char hexDigits[] = "0123456789ABCDEF";
     FILE *fileWriter;
     char octString[3];
-    fileWriter = fopen("222_Property.txt");
+    fileWriter = fopen("222_Property.txt", "w");
     fprintf(fileWriter, "%s ", username_g);
     fprintf(fileWriter, "%s", getDateAndTime());
     fprintf(fileWriter, "CS222 Property Report\n\n");
