@@ -25,7 +25,7 @@ typedef struct {
 } address_t;
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
-int numAddresses_g; // global variable
+
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -62,6 +62,8 @@ int main() {
         printf("%s valid? %d; alias length: %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress, length);
     }
 
+    generateManufacturerRpt();
+
     free(addressArrayPointer_g);
 }
 
@@ -95,7 +97,6 @@ void readDataFile() {
         recordCount++;
     }
     printf("Total mac entries: %d\n", recordCount);
-    numAddresses_g = recordCount;
 
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(*addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
 
@@ -226,15 +227,31 @@ int checkAlias(address_t macAddress) {
 
 
 void generateManufacturerRpt() {
-    int addressTotal = 0; // total number of different MAC addresses
+    int addressTotal = 0; // total number of different VALID MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
+    char manufactArray[sizeof(addressArrayPointer_g)/sizeof(addressArrayPointer_g[0].macManufac)];
+    int manuArrayLen = sizeof(manufactArray)/sizeof(manufactArray[0]);
 
-    for (int i = 0; i < numAddresses_g; i++) {
+    for (int i = 0; i < (sizeof(addressArrayPointer_g)/sizeof(addressArrayPointer_g[0])); i++) {
         if (addressArrayPointer_g[i].validAddress == 1) {
             addressTotal++;
+
+            int manuCounted = 0;
+            for (int j = 0; j < manuArrayLen; j++) {
+                if (strcmp(addressArrayPointer_g[i].macManufac, manufactArray[j]) == 0) {
+                    manuCounted = 1;
+                    break;
+                }
+            }
+            if (manuCounted == 0) {
+                manufacturerTotal++;
+            }
+
             // add each manufacturer to the list
                 // add the aliases below the manufacturer
         }
     }
 
+    printf("Total number of valid addresses: %d\n", addressTotal);
+    printf("Total number of unique manufacturers: %d\n", manufacturerTotal);
 }
