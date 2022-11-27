@@ -121,10 +121,12 @@ void readDataFile() {
     int i = 0; // index value
     // fpos_t position;
     while (fgets(charBuffer, maxLineLength, filePointer)) {
+        printf("Within while loop");
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
         }
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
+        printf("Address built");
         if (checkAddress(addressArrayPointer_g[i]) == 0 || checkAlias(addressArrayPointer_g[i]) == 0) { // check validity
             addressArrayPointer_g[i].validAddress = 0;
             // fgetpos(filePointer, &position);
