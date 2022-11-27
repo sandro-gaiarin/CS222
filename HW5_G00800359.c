@@ -13,19 +13,12 @@ mac alias: 18-33
 
 typedef struct {
     char mac[6][2]; // array to store mac address
-    // char mac1[2];
-    // char mac2[2];
-    // char mac3[2];
-    // char mac4[2];
-    // char mac5[2];
-    // char mac6[2];
     char macAlias[50]; // character array to store the mac alias 
     int validAddress; // boolean int
     char macManufac[8]; // first six MAC address digits in a string format with ':'
 } address_t;
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
-int numAddresses_g; // global variable
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -94,33 +87,26 @@ void readDataFile() {
         }
         recordCount++;
     }
-    printf("Total mac entries: %d\n", recordCount);
-    numAddresses_g = recordCount;
-
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
-    printf("address pointer successfully assigned.\n");
-    //address_t addressArray[recordCount];
-    //addressArrayPointer_g = &addressArray[0];
-    printf("Address array created successfully.\n");
 
     rewind(filePointer); // rewind the file
     fclose(filePointer);
 
     FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
-    printf("Error file open attempt created\n");
+    //printf("Error file open attempt created\n");
     if (errorFile == NULL) { // THIS DOESN'T FIRE, SO IT'S NOT NULL ON OPEN
         printf("File opening error occured.\n");
     }
 
-    char userName[32] = "TEST USERNAME\n";
-    // printf("Please enter user name: ");
-    // fgets(userName, 32, stdin);
+    char userName[32];
+    printf("Please enter user name: ");
+    fgets(userName, 32, stdin);
     userName[strcspn(userName, "\n")] = 0; //remove newline from end of userName
 
     fprintf(errorFile, "%s ", userName);
-    fprintf(errorFile, "%s\n", getDateAndTime());
-    fprintf(errorFile, "CS222 Error Report\n");
+    fprintf(errorFile, "%s", getDateAndTime());
+    fprintf(errorFile, "CS222 Error Report\n\n");
     fclose(errorFile);
 
     filePointer = fopen(fileName, "r");
@@ -147,18 +133,7 @@ void readDataFile() {
     }
 
     fclose(filePointer); // close the file
-    printf("filePointer successfully closed. ");
-
 }
-
-    // // Check validity of address and alias:
-    // for (i = 0; i < numAddresses_g; i++) {
-    //     addressArrayPointer_g[i].validAddress = checkAddress(addressArrayPointer_g[i]); // check address validity
-    //     if (addressArrayPointer_g[i].validAddress == 1) {
-    //         addressArrayPointer_g[i].validAddress = checkAlias(addressArrayPointer_g[i]); // check alias validity
-    //     }
-    // }
-
 
 address_t buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
     /* 
@@ -168,7 +143,7 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     */
     address_t returnAddress;
 
-    printf("BuildAddressStruct() current line: %s\n", addressLine); //TODO DELETE
+    //printf("BuildAddressStruct() current line: %s\n", addressLine); //TODO DELETE
     // I can't think of a better way to do this other than hard coding it.
     returnAddress.mac[0][0] = toupper(addressLine[0]);
     returnAddress.mac[0][1] = toupper(addressLine[1]);
@@ -203,9 +178,7 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
         returnAddress.macAlias[j] = toupper(addressLine[i]);
         j++;
     }
-
     returnAddress.validAddress = 1;
-
     return returnAddress;
 }
 
@@ -223,6 +196,7 @@ int checkAddress(address_t macAddress) {
     return 1;
 }
 
+
 int checkAlias(address_t macAddress) {
     macAddress.macAlias[strcspn(macAddress.macAlias, "\n")] = 0;
     int length = strlen(macAddress.macAlias);
@@ -232,17 +206,18 @@ int checkAlias(address_t macAddress) {
     return 1;
 }
 
+
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
+    int numAddresses = sizeof(addressArrayPointer_g)/sizeof(addressArrayPointer_g[0]); // get number of addresses
 
-    for (int i = 0; i < numAddresses_g; i++) {
+    for (int i = 0; i < numAddresses; i++) {
         if (addressArrayPointer_g[i].validAddress == 1) {
             addressTotal++;
             // add each manufacturer to the list
                 // add the aliases below the manufacturer
         }
     }
-
 
 }
