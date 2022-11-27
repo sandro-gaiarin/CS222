@@ -70,11 +70,11 @@ address_t buildAddressStruct(char addressLine[]);
 /*
 Open and read CS222_Mfg.txt to get the names of the Manufacturers
 */
-manufacturer_t* readMfgFile();
+void readMfgFile();
 /*
 Open and write the 222_MfgReportByName.txt file
 */
-void generateMfgRptByName(manufacturer_t manufacturerArray[]);
+void generateMfgRptByName(manufacturer_t *manufacturerArray);
 
 
 int main() {
@@ -87,15 +87,10 @@ int main() {
     }
 
     generateManufacturerRpt();
-    manufacturer_t *manufacturerArray;
-    manufacturerArray = readMfgFile();
 
-    printf("ManufacturerArray assigned, I think\n");
-    generateMfgRptByName(manufacturerArray);
+    readMfgFile();
 
     free(addressArrayPointer_g);
-    free(manufacturerArray);
-    
 }
 
 
@@ -336,7 +331,7 @@ void generateManufacturerRpt() {
     fclose(reportFile);
 }
 
-manufacturer_t* readMfgFile() {
+void readMfgFile() {
     printf("We are in readMfgFile()\n");
     FILE *fileReader = fopen("CS222_Mfg.txt", "r");
     printf("fileReader is open\n");
@@ -374,7 +369,8 @@ manufacturer_t* readMfgFile() {
     printf("Finished whole while loop.\n");
     fclose(fileReader);
     printf("fileReader has closed.\n");
-    return returnArrayPointer;
+    
+    generateMfgRptByName(returnArrayPointer);
 }
 
 void generateMfgRptByName(manufacturer_t *manufacturerArray) {
