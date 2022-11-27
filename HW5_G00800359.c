@@ -357,9 +357,9 @@ manufacturer_t* readMfgFile() {
         int k = 0;
         for (int j = 9; j < maxLineLength; j++) {
             returnArrayPointer[i].manufacName[k] = charBuffer[j];
-            k++
+            k++;
         }
-        i++
+        i++;
     }
     fclose(fileReader);
     return returnArrayPointer;
