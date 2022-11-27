@@ -243,7 +243,7 @@ void generateManufacturerRpt() {
                     manuCounted = 1;
                     break;
                 }
-                if (manufactArray[j][0] == NULL && manuCounted == 0) {
+                else if (manufactArray[j] == NULL) {
                     // if we reach a NULL point in the array and the manufacturer has not been counted yet,
                     // it gets added to the list
                     // manufactArray[j] = addressArrayPointer_g[i].macManufac;
