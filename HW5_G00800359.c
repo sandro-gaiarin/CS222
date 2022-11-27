@@ -11,6 +11,10 @@ mac address: 0,1,3,4,6,7,9,10,12,13,15,16
 mac alias: 18-33
 */
 
+/*
+Code is working!!
+*/
+
 typedef struct {
     char mac[6][2]; // array to store mac address
     // char mac1[2];
