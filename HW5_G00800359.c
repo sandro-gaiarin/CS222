@@ -447,7 +447,7 @@ void generatePropertyRpt() {
         binaryBuffer[0] = '\0';
         if (addressArrayPointer_g[i].validAddress == 1) {
             for (int j = 0; j < 16; j++) {
-                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[j]) {
                     if (binaryNums[j][3] == '0') {
                         fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
                     }
@@ -462,7 +462,7 @@ void generatePropertyRpt() {
         binaryBuffer[0] = '\0';
         if (addressArrayPointer_g[i].validAddress == 1) {
             for (int j = 0; j < 16; j++) {
-                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[j]) {
                     if (binaryNums[j][3] == '1') {
                         fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
                     }
@@ -477,7 +477,7 @@ void generatePropertyRpt() {
         binaryBuffer[0] = '\0';
         if (addressArrayPointer_g[i].validAddress == 1) {
             for (int j = 0; j < 16; j++) {
-                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[j]) {
                     if (binaryNums[j][2] == '0') {
                         fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
                     }
@@ -492,7 +492,7 @@ void generatePropertyRpt() {
         binaryBuffer[0] = '\0';
         if (addressArrayPointer_g[i].validAddress == 1) {
             for (int j = 0; j < 16; j++) {
-                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[j]) {
                     if (binaryNums[j][2] == '1') {
                         fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
                     }
