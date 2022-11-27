@@ -115,7 +115,7 @@ void readDataFile() {
     fprintf(errorFile, "%s", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n\n");
     fclose(errorFile);
-    printf("Error file closed.") // TEST
+    printf("Error file closed."); // TEST
 
     filePointer = fopen("CS222_Inet.txt", "r");
     printf("Read file opened"); //TEST
