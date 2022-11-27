@@ -26,6 +26,7 @@ typedef struct {
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
 int totalAddresses_g;
+char username_g[32];
 
 /*
 Open and read data file (CS222_Inet.txt)
@@ -108,12 +109,12 @@ void readDataFile() {
     errorFile = fopen("222_Error_Report.txt", "w");
     printf("Error file open attempt created\n");
 
-    char userName[32];
-    printf("Please enter user name: ");
-    fgets(userName, 32, stdin);
-    userName[strcspn(userName, "\n")] = 0; //remove newline from end of userName
 
-    fprintf(errorFile, "%s ", userName);
+    printf("Please enter user name: ");
+    fgets(username_g, 32, stdin);
+    username_g[strcspn(username_g, "\n")] = 0; //remove newline from end of username_g
+
+    fprintf(errorFile, "%s ", username_g);
     fprintf(errorFile, "%s", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n\n");
     fclose(errorFile);
@@ -234,6 +235,7 @@ void generateManufacturerRpt() {
     int manufacturerTotal = 0; // total number of manufacturers represented
     int arrayLen = totalAddresses_g;
     char manufactArray[arrayLen][9];
+    FILE *reportFile;
 
 
     for (int i = 0; i < arrayLen; i++) { // clean out character arrays
@@ -281,5 +283,26 @@ void generateManufacturerRpt() {
     for (int i = 0; i < arrayLen; i++) {
         printf("   %s\n", manufactArray[i]);
     }
-    printf("Recorded array length: %d", arrayLen);
+    printf("Recorded array length: %d\n", arrayLen);
+
+    // Time to finally build the Report .txt file
+
+    reportFile = fopen("222_Manufacturer_Report.txt", "w");
+    fprintf(reportFile, "%s ", username_g);
+    fprintf(reportFile, "%s", getDateAndTime());
+    fprintf(reportFile, "CS222 Network Manufacturer Report\n");
+    fprintf(reportFile, "Address total: %s\n", addressTotal);
+    fprintf(reportFile, "Manufacturers: %s\n\n", manufacturerTotal);
+
+    for (int i = 0; i < manufacturerTotal; i++) {
+        fprintf(reportFile, "%s\n", manufactArray[i]);
+        for (int j = 0; j < arrayLen; j++) {
+            if (strcmp(addressArrayPointer_g[i].macManufac, manufactArray[i]) == 0) {
+                fprintf(reportFile, "%s", addressArrayPointer_g[i].macAlias);
+            }
+        }
+        fprintf(reportFile, "\n");
+    }
+
+    fclose(reportFile);
 }
