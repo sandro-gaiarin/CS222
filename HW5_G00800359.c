@@ -243,11 +243,11 @@ void generateManufacturerRpt() {
                     manuCounted = 1;
                     break;
                 }
-                if (manufactArray[j] == NULL && manuCounted == 0) {
+                if (manufactArray[j][0] == NULL && manuCounted == 0) {
                     // if we reach a NULL point in the array and the manufacturer has not been counted yet,
                     // it gets added to the list
                     // manufactArray[j] = addressArrayPointer_g[i].macManufac;
-                    strcpy(manufactArray[j][0], addressArrayPointer_g[i].macManufac);
+                    strcpy(manufactArray[j], addressArrayPointer_g[i].macManufac);
                 }
             }
             if (manuCounted == 0) {
