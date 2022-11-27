@@ -230,7 +230,7 @@ int checkAlias(address_t macAddress) {
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different VALID MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
-    char manufactArray[21][8];
+    char manufactArray[21][9];
     int manuArrayLen = 21;
 
     for (int i = 0; i < 21; i++) {
