@@ -76,7 +76,7 @@ char *getDateAndTime() {
 void readDataFile() {
     char fileName[] = "CS222_Inet.txt";
     FILE *filePointer;
-    filePointer = fopen(fileName, "r"); // point filePointer at file
+    filePointer = fopen("CS222_Inet.txt", "r"); // point filePointer at file
 
     char charBuffer[50];
     int maxLineLength = 60;
@@ -116,7 +116,7 @@ void readDataFile() {
     fprintf(errorFile, "CS222 Error Report\n\n");
     fclose(errorFile);
 
-    filePointer = fopen(fileName, "r");
+    filePointer = fopen("CS222_Inet.txt", "r");
     printf("Read file opened"); //TEST
     int i = 0; // index value
     fpos_t position;
@@ -135,7 +135,7 @@ void readDataFile() {
             fprintf(errorFile, "%s", charBuffer);
             fclose(errorFile);
             printf("Write file closed"); //TEST
-            filePointer = fopen(fileName, "r");
+            filePointer = fopen("CS222_Inet.txt", "r");
             printf("Read file opened"); //TEST
             fsetpos(filePointer, &position);
         }
