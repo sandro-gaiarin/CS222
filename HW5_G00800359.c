@@ -4,6 +4,10 @@
 #include <ctype.h>
 #include <time.h>
 
+/*
+Code by Alessandro Gaiarin, for CS222 Fall 2022.
+This is my last assignment of my 9-year college career!
+*/
 
 typedef struct {
     char mac[6][2]; // array to store mac address
@@ -483,6 +487,5 @@ void generatePropertyRpt() {
             }
         }
     }
-
     fclose(fileWriter);
 }
