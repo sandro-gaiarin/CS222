@@ -353,7 +353,7 @@ manufacturer_t* readMfgFile() {
         recordCount++;
     }
     // returnArrayPointer = (manufacturer_t*) malloc(recordCount * sizeof(*returnArrayPointer));
-    manufacturer_t returnArrayPointer[recordCount];
+    static manufacturer_t returnArrayPointer[recordCount];
 
     rewind(fileReader);
     printf("fileReader has rewound\n");
