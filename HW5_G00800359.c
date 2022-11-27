@@ -359,7 +359,7 @@ void readMfgFile() {
         for (j = 0; j < 9; j++) { // copy over the MAC address digits
             returnArrayPointer[i].manufacCode[j] = charBuffer[j];
         }
-        returnArrayPointer[i].manufacCode[j] = '\0';
+        returnArrayPointer[i].manufacCode[8] = '\0';
         int k = 0;
         for (int j = 9; j < maxLineLength; j++) {
             returnArrayPointer[i].manufacName[k] = charBuffer[j];
