@@ -374,6 +374,6 @@ manufacturer_t* readMfgFile() {
     return returnArrayPointer;
 }
 
-void generateMfgRptByName(manufacturer_t manufacturerArray[]) {
+void generateMfgRptByName(manufacturer_t *manufacturerArray) {
     printf("Great success!!!\n");
 }
