@@ -297,8 +297,8 @@ void generateManufacturerRpt() {
     for (int i = 0; i < manufacturerTotal; i++) {
         fprintf(reportFile, "%s\n", manufactArray[i]);
         for (int j = 0; j < arrayLen; j++) {
-            if (strcmp(addressArrayPointer_g[i].macManufac, manufactArray[i]) == 0) {
-                fprintf(reportFile, "%s", addressArrayPointer_g[i].macAlias);
+            if (strcmp(addressArrayPointer_g[j].macManufac, manufactArray[i]) == 0) {
+                fprintf(reportFile, "%s", addressArrayPointer_g[j].macAlias);
             }
         }
         fprintf(reportFile, "\n");
