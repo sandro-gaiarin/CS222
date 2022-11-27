@@ -91,8 +91,8 @@ int main() {
     manufacturer_t *manufacturerArray = readMfgFile();
     generateMfgRptByName(manufacturerArray);
 
-    // free(addressArrayPointer_g);
-    // free(manufacturerArray);
+    free(addressArrayPointer_g);
+    free(manufacturerArray);
     
 }
 
@@ -337,6 +337,7 @@ void generateManufacturerRpt() {
 manufacturer_t* readMfgFile() {
     printf("We are in readMfgFile()\n");
     FILE *fileReader = fopen("CS222_Mfg.txt", "r");
+    printf("fileReader is open\n");
     char charBuffer[50];
     int maxLineLength = 60;
     manufacturer_t *returnArrayPointer;
@@ -352,6 +353,7 @@ manufacturer_t* readMfgFile() {
     returnArrayPointer = (manufacturer_t*) malloc(recordCount * sizeof(manufacturer_t));
 
     rewind(fileReader);
+    printf("fileReader has rewound\n");
     int i = 0;
     while (fgets(charBuffer, maxLineLength, fileReader)) {
         for (int j = 0; j < 9; j++) { // copy over the MAC address digits
@@ -366,6 +368,7 @@ manufacturer_t* readMfgFile() {
         i++;
     }
     fclose(fileReader);
+    printf("fileReader has closed.\n");
     return returnArrayPointer;
 }
 
