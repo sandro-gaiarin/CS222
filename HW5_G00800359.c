@@ -133,7 +133,7 @@ void readDataFile() {
             errorFile = fopen("222_Error_Report.txt", "a");
             // printf("Write file opened"); //TEST
             // // fprintf(errorFile, "%s", charBuffer);
-            fclose(errorFile);
+            // fclose(errorFile);
             // printf("Write file closed"); //TEST
             // filePointer = fopen("CS222_Inet.txt", "r");
             // printf("Read file opened"); //TEST
@@ -142,6 +142,7 @@ void readDataFile() {
         i++;
     }
 
+    fclose(errorFile);
     fclose(filePointer); // close the file
     printf("Read file closed"); //TEST
 }
