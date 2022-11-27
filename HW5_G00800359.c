@@ -397,7 +397,7 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
     fprintf(fileWriter, "Address total: %d\n", addressTotal);
     fprintf(fileWriter, "Known Manufacturers: %d\n\n", manufacturerTotal);
 
-    for (int i = 0; i < manufacturerTotal; i++) {
+    for (int i = 0; i < manufacturerTotal; i++) { // assign to manufacturers and write to the file
         fprintf(fileWriter, "(%s)\n", manufacturerArray[i].manufacName);
         for (int j = 0; j < addressTotal; j++) {
             if (strcmp(addressArrayPointer_g[j].macManufac, manufacturerArray[i].manufacCode) == 0) {
@@ -406,5 +406,20 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
         }
         fprintf(fileWriter, "\n");
     }
+    fprintf(fileWriter, "(Unknown)");
+    for (int i = 0; i < totalAddresses_g; i++) { // populate the list of Unknown manufacturers
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            int seen = 0;
+            for (int j = 0; j < manufacturerTotal; j++) {
+                if (strcmp(addressArrayPointer_g[i].macManufac, manufacturerArray[j].manufacCode) == 0) {
+                    seen = 1;
+                }
+            }
+            if (seen == 1) {
+                fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+            }
+        }
+    }
+
     fclose(fileWriter);
 }
