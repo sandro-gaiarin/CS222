@@ -102,7 +102,7 @@ void readDataFile() {
     fclose(filePointer);
 
     FILE *errorFile; // create error file
-    errorFile = fopen("222_Error_Report.txt", "w+");
+    errorFile = fopen("222_Error_Report.txt", "w");
     printf("Error file open attempt created\n");
 
     char userName[32];
@@ -112,7 +112,7 @@ void readDataFile() {
 
     fprintf(errorFile, "%s ", userName);
     fprintf(errorFile, "%s", getDateAndTime());
-    fprintf(errorFile, "CS222 Error Report\n\n");
+    fprintf(errorFile, "CS222 Error Report\n");
     fclose(errorFile);
     printf("Error file closed."); // TEST
 
