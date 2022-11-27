@@ -279,4 +279,5 @@ void generateManufacturerRpt() {
     for (int i = 0; i < arrayLen; i++) {
         printf("   %s\n", manufactArray[i]);
     }
+    printf("Recorded array length: %d", arrayLen);
 }
