@@ -4,25 +4,9 @@
 #include <ctype.h>
 #include <time.h>
 
-/*
-NOTES:
-if i add each line in the text file as a character array, the index values are:
-mac address: 0,1,3,4,6,7,9,10,12,13,15,16
-mac alias: 18-33
-*/
-
-/*
-Code is working!!
-*/
 
 typedef struct {
     char mac[6][2]; // array to store mac address
-    // char mac1[2];
-    // char mac2[2];
-    // char mac3[2];
-    // char mac4[2];
-    // char mac5[2];
-    // char mac6[2];
     char macAlias[50]; // character array to store the mac alias 
     int validAddress; // boolean int
     char macManufac[9]; // first six MAC address digits in a string format with ':'
@@ -40,6 +24,9 @@ int totalAddresses_g; // GLOBAL VARIABLE, total number of addresses in the globa
 I just couldn't get specific parts of my code to work without keeping track
 of the total number of addresses in this way. */
 
+//========================================================================================
+// Main UDFs
+//========================================================================================
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -66,7 +53,9 @@ Builds address_t structure out of a line of characters
 */
 address_t buildAddressStruct(char addressLine[]);
 
+//========================================================================================
 // Extra credit UDFs
+//========================================================================================
 /*
 Open and read CS222_Mfg.txt to get the names of the Manufacturers
 */
@@ -84,18 +73,18 @@ void generatePropertyRpt();
 
 
 int main() {
-    readDataFile(); // still working on this, but it needs to be in main to test
+    readDataFile();
+    /*
     int i = 0;
     printf("Data file successfully read. Attempting to print addresses and their validity...\n"); // DELETE
     for (i = 0; i < 21; i++) { // TEST, DELETE
         int length = strlen(addressArrayPointer_g[i].macAlias);
         printf("%s valid? %d; alias length: %d\n", addressArrayPointer_g[i].macAlias, addressArrayPointer_g[i].validAddress, length);
     }
-
+    */
     generateManufacturerRpt();
     readMfgFile();
     generatePropertyRpt();
-
     free(addressArrayPointer_g);
 }
 
