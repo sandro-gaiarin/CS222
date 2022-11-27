@@ -230,7 +230,7 @@ int checkAlias(address_t macAddress) {
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different VALID MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
-    int arrayLen = sizeof(addressArrayPointer_g)/sizeof(address_t);
+    int arrayLen = *(&addressArrayPointer_g + 1) - addressArrayPointer_g;
     char manufactArray[arrayLen][9];
 
 
