@@ -136,6 +136,7 @@ void readDataFile() {
             errorFile = fopen("222_Error_Report.txt", "a");
             printf("Opened error file successfully\n");
             // printf("Write file opened"); //TEST
+            printf("Attempting to add charBuffer: %s\n", charBuffer);
             fprintf(errorFile, "%s", charBuffer);
             fclose(errorFile);
             // printf("Write file closed"); //TEST
