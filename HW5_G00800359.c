@@ -273,4 +273,8 @@ void generateManufacturerRpt() {
 
     printf("Total number of valid addresses: %d\n", addressTotal);
     printf("Total number of unique manufacturers: %d\n", manufacturerTotal);
+    printf("Valid manufacturers: \n");
+    for (int i = 0; i < 21; i++) {
+        printf("   %s\n", manufactArray[i]);
+    }
 }
