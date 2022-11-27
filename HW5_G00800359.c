@@ -87,8 +87,9 @@ int main() {
     }
 
     generateManufacturerRpt();
-
-    manufacturer_t *manufacturerArray = readMfgFile();
+    manufacturer_t *manufacturerArray = (manufacturer_t*) malloc(recordCount * sizeof(manufacturer_t));
+    manufacturerArray = readMfgFile();
+    
     printf("ManufacturerArray assigned, I think\n");
     generateMfgRptByName(manufacturerArray);
 
