@@ -94,7 +94,7 @@ void readDataFile() {
         }
         recordCount++;
     }
-    //printf("Total mac entries: %d\n", recordCount);
+    printf("Total mac entries: %d\n", recordCount);
     numAddresses_g = recordCount;
 
     addressArrayPointer_g = (address_t*) malloc(sizeof(address_t) * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
