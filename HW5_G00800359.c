@@ -291,8 +291,8 @@ void generateManufacturerRpt() {
     fprintf(reportFile, "%s ", username_g);
     fprintf(reportFile, "%s", getDateAndTime());
     fprintf(reportFile, "CS222 Network Manufacturer Report\n");
-    fprintf(reportFile, "Address total: %s\n", addressTotal);
-    fprintf(reportFile, "Manufacturers: %s\n\n", manufacturerTotal);
+    fprintf(reportFile, "Address total: %d\n", addressTotal);
+    fprintf(reportFile, "Manufacturers: %d\n\n", manufacturerTotal);
 
     for (int i = 0; i < manufacturerTotal; i++) {
         fprintf(reportFile, "%s\n", manufactArray[i]);
