@@ -75,6 +75,12 @@ void readMfgFile();
 Open and write the 222_MfgReportByName.txt file
 */
 void generateMfgRptByName(manufacturer_t *manufacturerArray);
+/*
+Create an output .txt file that lists valid aliases on whether or not
+they are multicast or unicast, and globally or locally administered.
+*/
+void generatePropertyRpt();
+
 
 
 int main() {
@@ -87,8 +93,8 @@ int main() {
     }
 
     generateManufacturerRpt();
-
     readMfgFile();
+    generatePropertyRpt();
 
     free(addressArrayPointer_g);
 }
@@ -378,7 +384,7 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
     FILE *fileWriter;
     int manufacturerTotal = 0;
     int addressTotal = 0;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++) { // THIS WILL BREAK IF THERE ARE MORE THAN THREE MANUFACTURERS LISTED
         manufacturerArray[i].manufacName[strcspn(manufacturerArray[i].manufacName, "\n")] = 0; // get rid of newlines
         manufacturerTotal++;
     }
@@ -419,6 +425,78 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
             }
             if (seen == 0) {
                 fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+            }
+        }
+    }
+    fclose(fileWriter);
+}
+
+void generatePropertyRpt() {
+    const char binaryNums = {"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
+    const char hexDigits = "0123456789ABCDEF";
+    FILE *fileWriter;
+    char octString[3];
+    fileWriter = fopen("222_Property.txt");
+    fprintf(fileWriter, "%s ", username_g);
+    fprintf(fileWriter, "%s", getDateAndTime());
+    fprintf(fileWriter, "CS222 Property Report\n\n");
+
+    fprintf(fileWriter, "Unicast\n");
+    char binaryBuffer[5];
+    for (int i = 0; i < totalAddresses_g; i++) {
+        binaryBuffer[0] = '\0';
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            for (int j = 0; j < 16; j++) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                    if (binaryNums[j][3] == '0') {
+                        fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+                    }
+                }
+            }
+        }
+    }
+
+    fprintf(fileWriter, "\n");
+    fprintf(fileWriter, "Multicast\n");
+    for (int i = 0; i < totalAddresses_g; i++) {
+        binaryBuffer[0] = '\0';
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            for (int j = 0; j < 16; j++) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                    if (binaryNums[j][3] == '1') {
+                        fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+                    }
+                }
+            }
+        }
+    }
+
+    fprintf(fileWriter, "\n");
+    fprintf(fileWriter, "Globally Unique\n");
+    for (int i = 0; i < totalAddresses_g; i++) {
+        binaryBuffer[0] = '\0';
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            for (int j = 0; j < 16; j++) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                    if (binaryNums[j][2] == '0') {
+                        fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+                    }
+                }
+            }
+        }
+    }
+
+    fprintf(fileWriter, "\n");
+    fprintf(fileWriter, "Locally Administered\n");
+    for (int i = 0; i < totalAddresses_g; i++) {
+        binaryBuffer[0] = '\0';
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            for (int j = 0; j < 16; j++) {
+                if (addressArrayPointer_g[i].mac[0][1] == hexDigits[0][j]) {
+                    if (binaryNums[j][2] == '1') {
+                        fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+                    }
+                }
             }
         }
     }
