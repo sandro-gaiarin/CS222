@@ -25,6 +25,7 @@ typedef struct {
 } address_t;
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
+int totalAddresses_g;
 
 /*
 Open and read data file (CS222_Inet.txt)
@@ -96,6 +97,7 @@ void readDataFile() {
         }
         recordCount++;
     }
+    totalAddresses_g = recordCount;
     printf("Total mac entries: %d\n", recordCount);
 
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(*addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
@@ -230,7 +232,7 @@ int checkAlias(address_t macAddress) {
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different VALID MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
-    int arrayLen = *(&addressArrayPointer_g + 1) - addressArrayPointer_g;
+    int arrayLen = totalAddresses_g;
     char manufactArray[arrayLen][9];
 
 
