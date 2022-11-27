@@ -229,7 +229,7 @@ int checkAlias(address_t macAddress) {
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different VALID MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
-    char *manufactArray[21];
+    char manufactArray[21][8];
     int manuArrayLen = 21;
 
     for (int i = 0; i < 21; i++) {
@@ -251,8 +251,8 @@ void generateManufacturerRpt() {
                     printf("Within else - null point found, adding new value\n");
                     // if we reach a NULL point in the array and the manufacturer has not been counted yet,
                     // it gets added to the list
-                    manufactArray[j] = addressArrayPointer_g[i].macManufac;
-                    // strcpy(manufactArray[j], addressArrayPointer_g[i].macManufac);
+                    // manufactArray[j] = addressArrayPointer_g[i].macManufac;
+                    strcpy(manufactArray[j], addressArrayPointer_g[i].macManufac);
                 }
             }
             if (manuCounted == 0) {
