@@ -117,6 +117,7 @@ void readDataFile() {
     fclose(errorFile);
 
     filePointer = fopen(fileName, "r");
+    printf("Read file opened"); //TEST
     int i = 0; // index value
     fpos_t position;
     while (fgets(charBuffer, maxLineLength, filePointer)) {
@@ -128,18 +129,21 @@ void readDataFile() {
             addressArrayPointer_g[i].validAddress = 0;
             fgetpos(filePointer, &position);
             fclose(filePointer);
+            printf("Read file closed"); //TEST
             errorFile = fopen("222_Error_Report.txt", "a");
+            printf("Write file opened"); //TEST
             fprintf(errorFile, "%s", charBuffer);
             fclose(errorFile);
+            printf("Write file closed"); //TEST
             filePointer = fopen(fileName, "r");
+            printf("Read file opened"); //TEST
             fsetpos(filePointer, &position);
-            //fprintf(errorFile, "%s", charBuffer); // add invalid mac address to the error file
         }
-        //[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         i++;
     }
 
     fclose(filePointer); // close the file
+    printf("Read file closed"); //TEST
 }
 
 address_t buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
