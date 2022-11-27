@@ -368,6 +368,7 @@ manufacturer_t* readMfgFile() {
         }
         i++;
     }
+    printf("Finished whole while loop.\n");
     fclose(fileReader);
     printf("fileReader has closed.\n");
     return returnArrayPointer;
