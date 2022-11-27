@@ -233,17 +233,22 @@ void generateManufacturerRpt() {
     int manuArrayLen = 21;
 
     for (int i = 0; i < 21; i++) {
+        printf("Within first for-loop.\n");
         if (addressArrayPointer_g[i].validAddress == 1) {
+            printf("Within first if-statement.\n");
             addressTotal++;
 
             int manuCounted = 0;
             for (int j = 0; j < manuArrayLen; j++) {
+                printf("Within second for-loop.");
                 if (strcmp(addressArrayPointer_g[i].macManufac, manufactArray[j]) == 0) {
+                    printf("Within first if statement - duplicate found.\n");
                     // if the manufacturer is already in the list, it has already been counted
                     manuCounted = 1;
                     break;
                 }
                 else if (manufactArray[j] == NULL) {
+                    printf("Within else - null point found, adding new value\n");
                     // if we reach a NULL point in the array and the manufacturer has not been counted yet,
                     // it gets added to the list
                     // manufactArray[j] = addressArrayPointer_g[i].macManufac;
@@ -251,6 +256,7 @@ void generateManufacturerRpt() {
                 }
             }
             if (manuCounted == 0) {
+                printf("Adding on to manufacturer total.\n");
                 manufacturerTotal++;
             }
 
