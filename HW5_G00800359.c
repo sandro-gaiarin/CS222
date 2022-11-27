@@ -399,9 +399,11 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
 
     for (int i = 0; i < manufacturerTotal; i++) { // assign to manufacturers and write to the file
         fprintf(fileWriter, "(%s)\n", manufacturerArray[i].manufacName);
-        for (int j = 0; j < addressTotal; j++) {
-            if (strcmp(addressArrayPointer_g[j].macManufac, manufacturerArray[i].manufacCode) == 0) {
-                fprintf(fileWriter, "%s", addressArrayPointer_g[j].macAlias);
+        for (int j = 0; j < totalAddresses_g; j++) {
+            if (addressArrayPointer_g[j].validAddress == 1) {
+                if (strcmp(addressArrayPointer_g[j].macManufac, manufacturerArray[i].manufacCode) == 0) {
+                    fprintf(fileWriter, "%s", addressArrayPointer_g[j].macAlias);
+                }
             }
         }
         fprintf(fileWriter, "\n");
