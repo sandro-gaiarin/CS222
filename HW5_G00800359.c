@@ -375,9 +375,36 @@ void readMfgFile() {
 }
 
 void generateMfgRptByName(manufacturer_t *manufacturerArray) {
+    FILE *fileWriter;
+    int manufacturerTotal = 0;
+    int addressTotal = 0;
     for (int i = 0; i < 3; i++) {
         manufacturerArray[i].manufacName[strcspn(manufacturerArray[i].manufacName, "\n")] = 0; // get rid of newlines
-        printf("%s", manufacturerArray[i].manufacName);
+        manufacturerTotal++;
     }
-    printf("Great success!!!\n");
+
+    for (int i = 0; i < totalAddresses_g; i++) {
+        if (addressArrayPointer_g[i].validAddress == 1) {
+            addressTotal++;
+        }
+    }
+
+    fileWriter = fopen("222_MfgReportByName.txt", "w");
+
+    fprintf(fileWriter, "%s ", username_g);
+    fprintf(fileWriter, "%s", getDateAndTime());
+    fprintf(fileWriter, "CS222 Network Manufacturer Report\n");
+    fprintf(fileWriter, "Address total: %d\n", addressTotal);
+    fprintf(fileWriter, "Known Manufacturers: %d\n\n", manufacturerTotal);
+
+    for (int i = 0; i < manufacturerTotal; i++) {
+        fprintf(fileWriter, "(%s)\n", manufacturerArray[i].manufacName);
+        for (int j = 0; j < addressTotal; j++) {
+            if (strcmp(addressArrayPointer_g[i].macManufac, manufacturerArray[i].manufacCode) == 0) {
+                fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+            }
+        }
+        fprintf(fileWriter, "\n");
+    }
+    fclose(fileWriter);
 }
