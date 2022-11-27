@@ -112,7 +112,7 @@ void readDataFile() {
 
     fprintf(errorFile, "%s ", userName);
     fprintf(errorFile, "%s", getDateAndTime());
-    fprintf(errorFile, "CS222 Error Report\n");
+    fprintf(errorFile, "CS222 Error Report\n\n");
     fclose(errorFile);
     // printf("Error file closed."); // TEST
 
@@ -130,10 +130,10 @@ void readDataFile() {
             // fgetpos(filePointer, &position);
             // fclose(filePointer);
             // printf("Read file closed"); //TEST
-            // // errorFile = fopen("222_Error_Report.txt", "a");
+            errorFile = fopen("222_Error_Report.txt", "a");
             // printf("Write file opened"); //TEST
             // // fprintf(errorFile, "%s", charBuffer);
-            // // fclose(errorFile);
+            fclose(errorFile);
             // printf("Write file closed"); //TEST
             // filePointer = fopen("CS222_Inet.txt", "r");
             // printf("Read file opened"); //TEST
