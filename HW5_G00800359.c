@@ -233,6 +233,10 @@ void generateManufacturerRpt() {
     char manufactArray[21][9];
     int manuArrayLen = 21;
 
+    for (int i = 0; i < 21; i++) { // clean out character arrays
+        manufactArray[i][0] = '\0';
+    }
+
     for (int i = 0; i < 21; i++) {
         printf("Within first for-loop.\n");
         if (addressArrayPointer_g[i].validAddress == 1) {
