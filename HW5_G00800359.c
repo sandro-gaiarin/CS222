@@ -355,10 +355,11 @@ void readMfgFile() {
     int i = 0;
     while (fgets(charBuffer, maxLineLength, fileReader)) {
         printf("Current while loop charBuffer: %s\n", charBuffer);
-        for (int j = 0; j < 9; j++) { // copy over the MAC address digits
+        int j = 0;
+        for (j = 0; j < 9; j++) { // copy over the MAC address digits
             returnArrayPointer[i].manufacCode[j] = charBuffer[j];
         }
-        returnArrayPointer[i].manufacCode[8] = '\0';
+        returnArrayPointer[i].manufacCode[j] = '\0';
         int k = 0;
         for (int j = 9; j < maxLineLength; j++) {
             returnArrayPointer[i].manufacName[k] = charBuffer[j];
@@ -375,6 +376,7 @@ void readMfgFile() {
 
 void generateMfgRptByName(manufacturer_t *manufacturerArray) {
     for (int i = 0; i < 3; i++) {
+        manufacturerArray[i].manufacName[strcspn(manufacturerArray[i].manufacName, "\n")] = 0; // get rid of newlines
         printf("%s", manufacturerArray[i].manufacName);
     }
     printf("Great success!!!\n");
