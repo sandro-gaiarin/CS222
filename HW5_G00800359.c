@@ -100,7 +100,7 @@ void readDataFile() {
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
-    // fclose(filePointer);
+    fclose(filePointer);
 
     errorFile = fopen("222_Error_Report.txt", "w");
     printf("Error file open attempt created\n");
@@ -116,7 +116,7 @@ void readDataFile() {
     fclose(errorFile);
     // printf("Error file closed."); // TEST
 
-    // filePointer = fopen("CS222_Inet.txt", "r");
+    filePointer = fopen("CS222_Inet.txt", "r");
     // printf("Read file opened"); //TEST
     int i = 0; // index value
     // fpos_t position;
