@@ -342,7 +342,7 @@ manufacturer_t* readMfgFile() {
     printf("fileReader is open\n");
     char charBuffer[50];
     int maxLineLength = 60;
-    manufacturer_t *returnArrayPointer;
+    // manufacturer_t *returnArrayPointer;
 
     if (fileReader == NULL) { // error for if the file cannot be opened
         printf("Unable to open 'CS222_Mfg.txt' file.\n");
@@ -374,7 +374,7 @@ manufacturer_t* readMfgFile() {
     printf("Finished whole while loop.\n");
     fclose(fileReader);
     printf("fileReader has closed.\n");
-    return returnArrayPointer;
+    return *returnArrayPointer;
 }
 
 void generateMfgRptByName(manufacturer_t *manufacturerArray) {
