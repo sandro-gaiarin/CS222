@@ -140,7 +140,7 @@ void readDataFile() {
             fprintf(errorFile, "%s", charBuffer);
             printf("character buffer successfully added. Attempting to close errorfile.\n");
             fclose(errorFile);
-            printf("Errorfile successfully closed.\n\n")
+            printf("Errorfile successfully closed.\n\n");
             // printf("Write file closed"); //TEST
             // filePointer = fopen("CS222_Inet.txt", "r");
             // printf("Read file opened"); //TEST
