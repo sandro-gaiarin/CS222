@@ -91,8 +91,8 @@ int main() {
     manufacturer_t *manufacturerArray = readMfgFile();
     generateMfgRptByName(manufacturerArray);
 
-    free(addressArrayPointer_g);
-    free(manufacturerArray);
+    // free(addressArrayPointer_g);
+    // free(manufacturerArray);
     
 }
 
