@@ -65,7 +65,6 @@ char *getDateAndTime() {
     return ctime(&t);
 }
 
-
 void readDataFile() {
     char fileName[] = "CS222_Inet.txt";
     FILE *filePointer;
@@ -210,7 +209,8 @@ int checkAlias(address_t macAddress) {
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
-    int numAddresses = sizeof(addressArrayPointer_g)/sizeof(addressArrayPointer_g[0]); // get number of addresses
+    //int numAddresses = sizeof(addressArrayPointer_g)/sizeof(addressArrayPointer_g[0]); // get number of addresses
+    int numAddresses = 21;
 
     for (int i = 0; i < numAddresses; i++) {
         if (addressArrayPointer_g[i].validAddress == 1) {
