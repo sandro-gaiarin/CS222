@@ -356,6 +356,7 @@ manufacturer_t* readMfgFile() {
     printf("fileReader has rewound\n");
     int i = 0;
     while (fgets(charBuffer, maxLineLength, fileReader)) {
+        printf("Current while loop charBuffer: %s\n", charBuffer);
         for (int j = 0; j < 9; j++) { // copy over the MAC address digits
             returnArrayPointer[i].manufacCode[j] = charBuffer[j];
         }
