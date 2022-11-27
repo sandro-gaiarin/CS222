@@ -332,6 +332,7 @@ void generateManufacturerRpt() {
 }
 
 manufacturer_t* readMfgFile() {
+    printf("We are in readMfgFile()\n");
     FILE *fileReader = fopen("CS222_Mfg.txt", "r");
     char charBuffer[50];
     int maxLineLength = 60;
