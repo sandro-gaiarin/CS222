@@ -88,9 +88,12 @@ int main() {
 
     generateManufacturerRpt();
 
-    generateMfgRptByName(readMfgFile());
+    manufacturer_t *manufacturerArray = readMfgFile();
+    generateMfgRptByName(manufacturerArray);
 
     free(addressArrayPointer_g);
+    free(manufacturerArray);
+    
 }
 
 
@@ -346,7 +349,7 @@ manufacturer_t* readMfgFile() {
     while (fgets(charBuffer, maxLineLength, fileReader)) { // count number of addresses
         recordCount++;
     }
-    returnArrayPointer = (manufacturer_t*) malloc(recordCount * sizeof(*returnArrayPointer));
+    returnArrayPointer = (manufacturer_t*) malloc(recordCount * sizeof(manufacturer_t));
 
     rewind(fileReader);
     int i = 0;
