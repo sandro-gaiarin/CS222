@@ -118,17 +118,12 @@ void readDataFile() {
         recordCount++;
     }
     totalAddresses_g = recordCount;
-    printf("Total mac entries: %d\n", recordCount);
-
+    // printf("Total mac entries: %d\n", recordCount);
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(*addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
-
     rewind(filePointer); // rewind the file
-    // // fclose(filePointer);
 
     errorFile = fopen("222_Error_Report.txt", "w");
-    printf("Error file open attempt created\n");
-
-
+    //printf("Error file open attempt created\n");
     printf("Please enter user name: ");
     fgets(username_g, 32, stdin);
     username_g[strcspn(username_g, "\n")] = 0; //remove newline from end of username_g
@@ -138,32 +133,29 @@ void readDataFile() {
     fprintf(errorFile, "CS222 Error Report\n\n");
     fclose(errorFile);
     // printf("Error file closed."); // TEST
-
-    // // filePointer = fopen("CS222_Inet.txt", "r");
     // printf("Read file opened"); //TEST
     int i = 0; // index value
-    // fpos_t position;
     while (fgets(charBuffer, maxLineLength, filePointer)) {
-        printf("Within while loop\n");
+        //printf("Within while loop\n");
         if (strcmp(charBuffer, breakString) == 0) {
             break; // break out of while loop if we reach the NONE alias
         }
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
-        printf("Address built\n");
+        //printf("Address built\n");
         if (checkAddress(addressArrayPointer_g[i]) == 0 || checkAlias(addressArrayPointer_g[i]) == 0) { // check validity
             addressArrayPointer_g[i].validAddress = 0;
             // fgetpos(filePointer, &position);
             // fclose(filePointer);
             // printf("Read file closed"); //TEST
-            printf("Within if statement\n");
+            //printf("Within if statement\n");
             errorFile = fopen("222_Error_Report.txt", "a");
-            printf("Opened error file successfully\n");
+            //printf("Opened error file successfully\n");
             // printf("Write file opened"); //TEST
-            printf("Attempting to add charBuffer: %s\n", charBuffer);
+            //printf("Attempting to add charBuffer: %s\n", charBuffer);
             fprintf(errorFile, "%s", charBuffer);
-            printf("character buffer successfully added. Attempting to close errorfile.\n");
+            //printf("character buffer successfully added. Attempting to close errorfile.\n");
             fclose(errorFile);
-            printf("Errorfile successfully closed.\n\n");
+            //printf("Errorfile successfully closed.\n\n");
             // printf("Write file closed"); //TEST
             // filePointer = fopen("CS222_Inet.txt", "r");
             // printf("Read file opened"); //TEST
@@ -173,7 +165,7 @@ void readDataFile() {
     }
 
     fclose(filePointer); // close the file
-    printf("Read file closed"); //TEST
+    //printf("Read file closed"); //TEST
 }
 
 address_t buildAddressStruct(char addressLine[]) { // converts char array of a line into an address_t
@@ -262,23 +254,23 @@ void generateManufacturerRpt() {
     }
 
     for (int i = 0; i < arrayLen; i++) {
-        printf("Within first for-loop.\n");
+        //printf("Within first for-loop.\n");
         if (addressArrayPointer_g[i].validAddress == 1) {
-            printf("Within first if-statement.\n");
+            //printf("Within first if-statement.\n");
             addressTotal++;
 
             int manuCounted = 0;
             for (int j = 0; j < arrayLen; j++) {
-                printf("Within second for-loop.\n");
-                printf("Current macManufac: %s. Current manufactArray: %s\n", addressArrayPointer_g[i].macManufac, manufactArray[j]);
+                //printf("Within second for-loop.\n");
+                //printf("Current macManufac: %s. Current manufactArray: %s\n", addressArrayPointer_g[i].macManufac, manufactArray[j]);
                 if (strcmp(addressArrayPointer_g[i].macManufac, manufactArray[j]) == 0) {
-                    printf("Within first if statement - duplicate found.\n");
+                    //printf("Within first if statement - duplicate found.\n");
                     // if the manufacturer is already in the list, it has already been counted
                     manuCounted = 1;
                     break;
                 }
                 if (manufactArray[j][0] == '\0') {
-                    printf("Within else - null point found, adding new value\n");
+                    //printf("Within else - null point found, adding new value\n");
                     // if we reach a NULL point in the array and the manufacturer has not been counted yet,
                     // it gets added to the list
                     // manufactArray[j] = addressArrayPointer_g[i].macManufac;
@@ -287,22 +279,22 @@ void generateManufacturerRpt() {
                 }
             }
             if (manuCounted == 0) {
-                printf("Adding on to manufacturer total.\n");
+                //printf("Adding on to manufacturer total.\n");
                 manufacturerTotal++;
             }
-            printf("\n");
+            //printf("\n");
             // add each manufacturer to the list
                 // add the aliases below the manufacturer
         }
     }
 
-    printf("Total number of valid addresses: %d\n", addressTotal);
-    printf("Total number of unique manufacturers: %d\n", manufacturerTotal);
-    printf("Valid manufacturers: \n");
-    for (int i = 0; i < arrayLen; i++) {
-        printf("   %s\n", manufactArray[i]);
-    }
-    printf("Recorded array length: %d\n", arrayLen);
+    // printf("Total number of valid addresses: %d\n", addressTotal);
+    // printf("Total number of unique manufacturers: %d\n", manufacturerTotal);
+    // printf("Valid manufacturers: \n");
+    // for (int i = 0; i < arrayLen; i++) {
+    //     printf("   %s\n", manufactArray[i]);
+    // }
+    // printf("Recorded array length: %d\n", arrayLen);
 
     // Time to finally build the Report .txt file
 
@@ -327,9 +319,9 @@ void generateManufacturerRpt() {
 }
 
 void readMfgFile() {
-    printf("We are in readMfgFile()\n");
+    //printf("We are in readMfgFile()\n");
     FILE *fileReader = fopen("CS222_Mfg.txt", "r");
-    printf("fileReader is open\n");
+    //printf("fileReader is open\n");
     char charBuffer[50];
     int maxLineLength = 60;
     // manufacturer_t *returnArrayPointer;
@@ -346,10 +338,10 @@ void readMfgFile() {
     manufacturer_t returnArrayPointer[recordCount];
 
     rewind(fileReader);
-    printf("fileReader has rewound\n");
+    //printf("fileReader has rewound\n");
     int i = 0;
     while (fgets(charBuffer, maxLineLength, fileReader)) {
-        printf("Current while loop charBuffer: %s\n", charBuffer);
+        //printf("Current while loop charBuffer: %s\n", charBuffer);
         int j = 0;
         for (j = 0; j < 9; j++) { // copy over the MAC address digits
             returnArrayPointer[i].manufacCode[j] = charBuffer[j];
@@ -362,9 +354,9 @@ void readMfgFile() {
         }
         i++;
     }
-    printf("Finished whole while loop.\n");
+    //printf("Finished whole while loop.\n");
     fclose(fileReader);
-    printf("fileReader has closed.\n");
+    //printf("fileReader has closed.\n");
     
     generateMfgRptByName(returnArrayPointer);
 }
@@ -421,7 +413,9 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
 }
 
 void generatePropertyRpt() {
-    char binaryNums[16][5] = {"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
+    char binaryNums[16][5] = {
+        "0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"
+        };
     char hexDigits[] = "0123456789ABCDEF";
     FILE *fileWriter;
     char octString[3];
