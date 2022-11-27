@@ -130,7 +130,9 @@ void readDataFile() {
             // fgetpos(filePointer, &position);
             // fclose(filePointer);
             // printf("Read file closed"); //TEST
+            printf("Within if statement");
             errorFile = fopen("222_Error_Report.txt", "a");
+            printf("Opened read file successfully");
             // printf("Write file opened"); //TEST
             // // fprintf(errorFile, "%s", charBuffer);
             // fclose(errorFile);
