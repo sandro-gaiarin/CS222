@@ -89,6 +89,7 @@ int main() {
     generateManufacturerRpt();
 
     manufacturer_t *manufacturerArray = readMfgFile();
+    printf("ManufacturerArray assigned, I think\n");
     generateMfgRptByName(manufacturerArray);
 
     free(addressArrayPointer_g);
