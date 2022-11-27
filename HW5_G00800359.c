@@ -104,7 +104,7 @@ void readDataFile() {
 
     FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
-    //printf("Error file open attempt created\n");
+    printf("Error file open attempt created\n");
 
     char userName[32];
     printf("Please enter user name: ");
@@ -115,6 +115,7 @@ void readDataFile() {
     fprintf(errorFile, "%s", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n\n");
     fclose(errorFile);
+    printf("Error file closed.") // TEST
 
     filePointer = fopen("CS222_Inet.txt", "r");
     printf("Read file opened"); //TEST
