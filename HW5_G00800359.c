@@ -374,7 +374,7 @@ manufacturer_t* readMfgFile() {
     printf("Finished whole while loop.\n");
     fclose(fileReader);
     printf("fileReader has closed.\n");
-    return *returnArrayPointer;
+    return returnArrayPointer;
 }
 
 void generateMfgRptByName(manufacturer_t *manufacturerArray) {
