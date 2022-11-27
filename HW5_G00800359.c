@@ -400,8 +400,8 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
     for (int i = 0; i < manufacturerTotal; i++) {
         fprintf(fileWriter, "(%s)\n", manufacturerArray[i].manufacName);
         for (int j = 0; j < addressTotal; j++) {
-            if (strcmp(addressArrayPointer_g[i].macManufac, manufacturerArray[i].manufacCode) == 0) {
-                fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
+            if (strcmp(addressArrayPointer_g[j].macManufac, manufacturerArray[i].manufacCode) == 0) {
+                fprintf(fileWriter, "%s", addressArrayPointer_g[j].macAlias);
             }
         }
         fprintf(fileWriter, "\n");
