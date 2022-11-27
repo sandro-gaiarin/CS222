@@ -106,15 +106,15 @@ void readDataFile() {
     errorFile = fopen("222_Error_Report.txt", "w");
     printf("Error file open attempt created\n");
 
-    char userName[32];
-    printf("Please enter user name: ");
-    fgets(userName, 32, stdin);
+    char userName[32] = "TEST USERNAME\n";
+    // printf("Please enter user name: ");
+    // fgets(userName, 32, stdin);
     userName[strcspn(userName, "\n")] = 0; //remove newline from end of userName
 
     fprintf(errorFile, "%s ", userName);
     fprintf(errorFile, "%s", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n\n");
-    printf("%d", fclose(errorFile));
+    fclose(errorFile);
     printf("Error file closed."); // TEST
 
     filePointer = fopen("CS222_Inet.txt", "r");
