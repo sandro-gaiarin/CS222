@@ -352,7 +352,7 @@ manufacturer_t* readMfgFile() {
     while (fgets(charBuffer, maxLineLength, fileReader)) { // count number of addresses
         recordCount++;
     }
-    returnArrayPointer = (manufacturer_t*) malloc(recordCount * sizeof(manufacturer_t));
+    returnArrayPointer = (manufacturer_t*) malloc(recordCount * sizeof(*returnArrayPointer));
 
     rewind(fileReader);
     printf("fileReader has rewound\n");
