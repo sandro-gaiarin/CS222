@@ -13,12 +13,19 @@ mac alias: 18-33
 
 typedef struct {
     char mac[6][2]; // array to store mac address
+    // char mac1[2];
+    // char mac2[2];
+    // char mac3[2];
+    // char mac4[2];
+    // char mac5[2];
+    // char mac6[2];
     char macAlias[50]; // character array to store the mac alias 
     int validAddress; // boolean int
     char macManufac[8]; // first six MAC address digits in a string format with ':'
 } address_t;
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
+int numAddresses_g; // global variable
 /*
 Open and read data file (CS222_Inet.txt)
 While reading, generate the CS222_Error_Report.txt file
@@ -65,6 +72,7 @@ char *getDateAndTime() {
     return ctime(&t);
 }
 
+
 void readDataFile() {
     char fileName[] = "CS222_Inet.txt";
     FILE *filePointer;
@@ -86,6 +94,9 @@ void readDataFile() {
         }
         recordCount++;
     }
+    //printf("Total mac entries: %d\n", recordCount);
+    numAddresses_g = recordCount;
+
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
@@ -209,10 +220,8 @@ int checkAlias(address_t macAddress) {
 void generateManufacturerRpt() {
     int addressTotal = 0; // total number of different MAC addresses
     int manufacturerTotal = 0; // total number of manufacturers represented
-    //int numAddresses = sizeof(addressArrayPointer_g)/sizeof(addressArrayPointer_g[0]); // get number of addresses
-    int numAddresses = 21;
 
-    for (int i = 0; i < numAddresses; i++) {
+    for (int i = 0; i < numAddresses_g; i++) {
         if (addressArrayPointer_g[i].validAddress == 1) {
             addressTotal++;
             // add each manufacturer to the list
