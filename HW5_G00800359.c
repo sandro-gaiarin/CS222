@@ -253,7 +253,7 @@ void generateManufacturerRpt() {
                     manuCounted = 1;
                     break;
                 }
-                else if (&manufactArray[j][0] == NULL) {
+                else if (manufactArray[j][0] == '\0') {
                     printf("Within else - null point found, adding new value\n");
                     // if we reach a NULL point in the array and the manufacturer has not been counted yet,
                     // it gets added to the list
