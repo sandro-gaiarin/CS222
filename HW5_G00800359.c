@@ -417,7 +417,7 @@ void generateMfgRptByName(manufacturer_t *manufacturerArray) {
                     seen = 1;
                 }
             }
-            if (seen == 1) {
+            if (seen == 0) {
                 fprintf(fileWriter, "%s", addressArrayPointer_g[i].macAlias);
             }
         }
