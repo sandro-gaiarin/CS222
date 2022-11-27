@@ -28,9 +28,17 @@ typedef struct {
     char macManufac[9]; // first six MAC address digits in a string format with ':'
 } address_t;
 
-address_t *addressArrayPointer_g; // GLOBAL VARIABLE
-int totalAddresses_g;
-char username_g[32];
+typedef struct {
+    char manufacCode[9]; // first six MAC address digits in a string format with ':'
+    char manufacName[16]; // Name of the manufacturer
+} manufacturer_t;
+
+address_t *addressArrayPointer_g; // GLOBAL VARIABLE, array of address_t's
+char username_g[32]; // GLOBAL VARIABLE, user name
+int totalAddresses_g; // GLOBAL VARIABLE, total number of addresses in the global array
+/* I know I'm going to take a point hit on the third global variable here.
+I just couldn't get specific parts of my code to work without keeping track
+of the total number of addresses in this way. */
 
 /*
 Open and read data file (CS222_Inet.txt)
@@ -58,6 +66,16 @@ Builds address_t structure out of a line of characters
 */
 address_t buildAddressStruct(char addressLine[]);
 
+// Extra credit UDFs
+/*
+Open and read CS222_Mfg.txt to get the names of the Manufacturers
+*/
+manufacturer_t* readMfgFile();
+/*
+Open and write the 222_MfgReportByName.txt file
+*/
+void generateMfgRptByName(manufacturer_t manufacturerArray[]);
+
 
 int main() {
     readDataFile(); // still working on this, but it needs to be in main to test
@@ -69,6 +87,8 @@ int main() {
     }
 
     generateManufacturerRpt();
+
+    generateMfgRptByName(readMfgFile());
 
     free(addressArrayPointer_g);
 }
@@ -309,4 +329,42 @@ void generateManufacturerRpt() {
     }
 
     fclose(reportFile);
+}
+
+manufacturer_t* readMfgFile() {
+    FILE *fileReader = fopen("CS222_Mfg.txt", "r");
+    char charBuffer[50];
+    int maxLineLength = 60;
+    manufacturer_t *returnArrayPointer;
+
+    if (fileReader == NULL) { // error for if the file cannot be opened
+        printf("Unable to open 'CS222_Mfg.txt' file.\n");
+        exit(1);
+    }
+    int recordCount = 0;
+    while (fgets(charBuffer, maxLineLength, fileReader)) { // count number of addresses
+        recordCount++;
+    }
+    returnArrayPointer = (manufacturer_t*) malloc(recordCount * sizeof(*returnArrayPointer));
+
+    rewind(fileReader);
+    int i = 0;
+    while (fgets(charBuffer, maxLineLength, fileReader)) {
+        for (int j = 0; j < 9; j++) { // copy over the MAC address digits
+            returnArrayPointer[i].manufacCode[j] = charBuffer[j];
+        }
+        returnArrayPointer[i].manufacCode[8] = '\0';
+        int k = 0;
+        for (int j = 9; j < maxLineLength; j++) {
+            returnArrayPointer[i].manufacName[k] = charBuffer[j];
+            k++
+        }
+        i++
+    }
+    fclose(fileReader);
+    return returnArrayPointer;
+}
+
+void generateMfgRptByName(manufacturer_t manufacturerArray[]) {
+    printf("Great success!!!\n");
 }
