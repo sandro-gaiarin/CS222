@@ -75,6 +75,7 @@ char *getDateAndTime() {
 
 void readDataFile() {
     FILE *filePointer;
+    FILE *errorFile; // create error file
     filePointer = fopen("CS222_Inet.txt", "r"); // point filePointer at file
 
     char charBuffer[50];
@@ -99,9 +100,8 @@ void readDataFile() {
     addressArrayPointer_g = (address_t*) malloc(recordCount * sizeof(addressArrayPointer_g)); // dynamically allocate memory for address_t array (TEST!!)
 
     rewind(filePointer); // rewind the file
-    fclose(filePointer);
+    // fclose(filePointer);
 
-    FILE *errorFile; // create error file
     errorFile = fopen("222_Error_Report.txt", "w");
     printf("Error file open attempt created\n");
 
@@ -113,11 +113,11 @@ void readDataFile() {
     fprintf(errorFile, "%s ", userName);
     fprintf(errorFile, "%s", getDateAndTime());
     fprintf(errorFile, "CS222 Error Report\n");
-    fclose(errorFile);
-    printf("Error file closed."); // TEST
+    // fclose(errorFile);
+    // printf("Error file closed."); // TEST
 
-    filePointer = fopen("CS222_Inet.txt", "r");
-    printf("Read file opened"); //TEST
+    // filePointer = fopen("CS222_Inet.txt", "r");
+    // printf("Read file opened"); //TEST
     int i = 0; // index value
     fpos_t position;
     while (fgets(charBuffer, maxLineLength, filePointer)) {
@@ -127,21 +127,22 @@ void readDataFile() {
         addressArrayPointer_g[i] = buildAddressStruct(charBuffer); // add the build address_t structs to the malloc'd array
         if (checkAddress(addressArrayPointer_g[i]) == 0 || checkAlias(addressArrayPointer_g[i]) == 0) { // check validity
             addressArrayPointer_g[i].validAddress = 0;
-            fgetpos(filePointer, &position);
-            fclose(filePointer);
-            printf("Read file closed"); //TEST
-            errorFile = fopen("222_Error_Report.txt", "a");
-            printf("Write file opened"); //TEST
+            // fgetpos(filePointer, &position);
+            // fclose(filePointer);
+            // printf("Read file closed"); //TEST
+            // errorFile = fopen("222_Error_Report.txt", "a");
+            // printf("Write file opened"); //TEST
             fprintf(errorFile, "%s", charBuffer);
-            fclose(errorFile);
-            printf("Write file closed"); //TEST
-            filePointer = fopen("CS222_Inet.txt", "r");
-            printf("Read file opened"); //TEST
-            fsetpos(filePointer, &position);
+            // fclose(errorFile);
+            // printf("Write file closed"); //TEST
+            // filePointer = fopen("CS222_Inet.txt", "r");
+            // printf("Read file opened"); //TEST
+            // fsetpos(filePointer, &position);
         }
         i++;
     }
 
+    fclose(errorFile);
     fclose(filePointer); // close the file
     printf("Read file closed"); //TEST
 }
