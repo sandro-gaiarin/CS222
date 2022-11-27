@@ -21,7 +21,7 @@ typedef struct {
     // char mac6[2];
     char macAlias[50]; // character array to store the mac alias 
     int validAddress; // boolean int
-    char macManufac[8]; // first six MAC address digits in a string format with ':'
+    char macManufac[9]; // first six MAC address digits in a string format with ':'
 } address_t;
 
 address_t *addressArrayPointer_g; // GLOBAL VARIABLE
@@ -191,6 +191,7 @@ address_t buildAddressStruct(char addressLine[]) { // converts char array of a l
     returnAddress.macManufac[5] = ':';
     returnAddress.macManufac[6] = returnAddress.mac[2][0];
     returnAddress.macManufac[7] = returnAddress.mac[2][1];
+    returnAddress.macManufac[8] = '\0';
     
     int j = 0;
     for (int i = 18; i < 50; i++) { // make all characters uppercase
